@@ -6,7 +6,7 @@
 >
 > **兼容运行包入口：** 本文件 + 包内根目录 `魂师修炼RPG_manifest.json`。
 >
-> **关键约定：** 本项目旧文档中的 `manifest` 是“当前机器注册表”的语义简称。Git 源码中的唯一机器主源是 `runtime/registry.json`；兼容运行包中的 `魂师修炼RPG_manifest.json` 是导出时由该 registry 与当前源码生成的派生视图，Git source tree 不保存它的长期副本。
+> **关键约定：** 本项目旧文档中的 `manifest` 是“当前机器注册表”的语义简称。Git 源码中的唯一机器主源是 `runtime/registry.json`；兼容运行包中的 `魂师修炼RPG_manifest.json` 是导出时由该 registry 与当前源码生成的派生视图，Git source tree 不保存它的长期副本。包内 manifest 必须写入生成它的精确 Git commit SHA。
 >
 > **不负责：** 不定义战斗、世界、剧情、人物、经济、UI、状态 schema 或某次冒险的当前具体值。
 
@@ -39,9 +39,11 @@ Git 源码维护时：
 - `runtime_working_state`：从当前稳定状态形成的单轮事务候选，不是第二持久化主源；
 - 普通游戏 route 在领域计算与 `12` 校验通过后，通过 registry 登记的 `STATE_COMMIT` 一次写回稳定 state owner；
 - Git commit SHA 是当前状态的持久历史身份；普通游戏状态提交不自动增加 `STATE_REV`；
-- `STATE_REV` 只表示兼容 checkpoint lineage revision；`SAVE_EXPORT` / 需要新 checkpoint revision 的显式迁移才更新它；
+- 普通“存档 / 保存进度”命中 `SAVE_CURRENT`，只确认 Git current state 已保存，不生成 ZIP、不增加 `STATE_REV`；
+- `STATE_REV` 只表示兼容 checkpoint lineage revision；只有明确 `SAVE_EXPORT` / 需要新 checkpoint revision 的显式迁移才更新它；
 - 外部 `SOUL_STATE_V1` ZIP 只作为 immutable import/export compatibility artifact，不能覆盖 Git `main` 的状态权威；
-- Git 项目整理、帮助、查看或游戏外讨论不得自动推进游戏世界。
+- “读档 / 继续 / 恢复游戏”默认直接读取 Git current state；只有明确点名外部 ZIP/checkpoint 才允许进入 `LOAD_SAVE`；
+- Git 项目整理、帮助、查看、保存确认或游戏外讨论不得自动推进游戏世界。
 
 ## 4. 读取与状态访问
 
@@ -54,6 +56,7 @@ Git 源码维护时：
 - control intent 的清单、优先级、recognition owner 与 dispatcher 映射只存在于 registry。
 - 普通游戏 route 的匹配顺序和 activation 条件只存在于 registry。
 - Skill 接管的复杂控制事务不得保留同职责空壳 route。
+- `SAVE_CURRENT` 与 `SAVE_EXPORT` 是不同控制意图：前者是只读 Git 保存确认，后者只处理用户明确要求的外部兼容导出；不得因都含“存档”一词而重新合并职责。
 - 一个普通 route 应有一个主 owner；跨领域子事务使用 `delegates_to` 或条件 source，不建立万能 route。
 - 没有 control intent、启动入口、ordinary activation、delegates 或其他真实消费者的 route 视为孤儿，应删除或接入真实入口。
 
@@ -61,28 +64,28 @@ Git 源码维护时：
 
 Git `main` 不保留 `_old / _backup / final_final`、已消费 patch/handoff、临时测试输出、构建产物、无消费者旧接口、重复业务主源或可从当前源码确定性再生的包级 manifest。历史由 Git commit 保存，不需要把施工史或生成视图继续留在当前 tree。
 
-兼容运行包是派生视图，只包含 `compatibility/runtime-members.json` 登记的正式 runtime 成员；不得把 `.github/`、仓库 QA 脚本、导出脚本或其它 source-only 工具塞入运行包。包内 `魂师修炼RPG_manifest.json` 由导出器现场生成并参与重开审计。
+兼容运行包是派生视图，只包含 `compatibility/runtime-members.json` 登记的正式 runtime 成员；不得把 `.github/`、仓库 QA 脚本、导出脚本或其它 source-only 工具塞入运行包。包内 `魂师修炼RPG_manifest.json` 由导出器现场生成、嵌入精确 source Git commit SHA 并参与重开审计。
 
 ## 7. 文件维护与 QA
 
-项目维护事务由 `soul-rpg-project-maintainer` 边界处理；存档加载/导出/迁移由 `soul-rpg-save-manager` 边界处理。业务 owner 与 PASS 条件仍属于项目文件，外部 Skill 只拥有工作流。
+项目维护事务由 `soul-rpg-project-maintainer` 边界处理；外部 checkpoint 加载/导出/迁移由 `soul-rpg-save-manager` 边界处理。普通 `SAVE_CURRENT` 不调用 Save Manager。业务 owner 与 PASS 条件仍属于项目文件，外部 Skill 只拥有工作流。
 
 - targeted 修改：运行受影响范围的增量 QA；
 - registry / route / schema / state lifecycle / external Skill interface 结构修改：扩展到依赖闭包；
 - 明确全局检查、整理/清理项目或正式 RELEASE：运行完整 Global QA；
-- 兼容 runtime export：必须从磁盘重开后再次校验成员、JSON、bytes/SHA 与 route 完整性。
+- 兼容 runtime export：必须从磁盘重开后再次校验成员、JSON、bytes/SHA、source Git commit identity 与 route 完整性。
 
 ## 8. 发布与版本
 
 项目源码的正式 release 身份是通过全部门槛的不可变 Git commit SHA。Git tag 只可作为人类可读标签，不是权威。
 
-兼容 runtime ZIP 继续保留两段式 `MAJOR.MINOR`，仅作为派生运行包版本：普通治理/结构清理默认只递增 MINOR；只有用户明确要求主版本时才跨 MAJOR。该 package release 与存档 `STATE_REV` 仍是独立对象。
+兼容 runtime ZIP 继续保留两段式 `MAJOR.MINOR`，仅作为派生运行包版本：普通治理/结构清理默认只递增 MINOR；只有用户明确要求主版本时才跨 MAJOR。该 package release 与存档 `STATE_REV` 仍是独立对象；同一 `MAJOR.MINOR` 标签下的具体导出来源由包内 manifest 的精确 Git SHA 区分。
 
 ## 9. 当前结构约束
 
 - Git 源码机器主源：`runtime/registry.json`。
-- 兼容包机器派生视图：包内根目录 `魂师修炼RPG_manifest.json`，导出时生成，不提交为长期 source 文件。
-- startup fast entry 与 control pre-router 仍是运行入口；复杂项目维护和存档事务直接 dispatch 到外部 Skill。
+- 兼容包机器派生视图：包内根目录 `魂师修炼RPG_manifest.json`，导出时生成，不提交为长期 source 文件；其 `generated_view.source_git_commit_sha` 是该包的精确源码身份。
+- startup fast entry 与 control pre-router 仍是运行入口；复杂项目维护和外部 checkpoint 事务直接 dispatch 到外部 Skill，普通保存确认走只读 route。
 - 当前稳定状态只认 registry 登记的 `state/current/SOUL_STATE_V1.yaml`；外部 checkpoint 只从 `external_sources.checkpoint_import` 进入显式导入/恢复流程。
 - README 与专用项目入口协议不复制业务实现。
 - freeze 集合、route、control intent、external source、state model 只认 registry；兼容 manifest 只能镜像，不可反向覆盖。
