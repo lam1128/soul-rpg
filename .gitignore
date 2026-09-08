@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 dist/
 *.zip
+/魂师修炼RPG_manifest.json
