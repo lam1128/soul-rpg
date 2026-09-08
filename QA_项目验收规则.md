@@ -1,6 +1,6 @@
 # 魂师修炼RPG｜项目验收规则
 
-> **文件职责：** 定义治理、职责分立、路由、状态边界、Git-first 架构与兼容运行包的 PASS 条件。
+> **文件职责：** 定义治理、职责分立、路由、状态边界与 Git-only 架构的 PASS 条件。
 >
 > **权威范围：** “什么状态算通过/失败”；不拥有被验收业务的实现规则。
 >
@@ -16,8 +16,8 @@
 4. 直接消费者和 route 引用仍有效。
 5. 不存在被删除文件、旧接口、别名、补丁、施工史或无消费者容器残留。
 6. UI 不保存机械常量；交互层不保存机械公式；Kernel 不保存领域常量；状态 schema 不保存可由领域 owner 读取的重复业务常量。
-7. 普通运行只允许形成一个 `runtime_working_state` 候选；校验后必须经 registry 的 `STATE_COMMIT` 写入稳定 Git current state。外部 checkpoint 只由授权的兼容导入/导出事务产生或消费。
-8. 受影响的 registry、兼容导出视图和 QA 结构已经同步。
+7. 普通运行只允许形成一个 `runtime_working_state` 候选；校验后必须经 registry 的 `STATE_COMMIT` 写入稳定 Git current state。外部 checkpoint 只由明确的导入/导出/迁移事务产生或消费。
+8. 受影响的 registry、owner 引用和 QA 结构已经同步。
 9. 大型内容 owner 的结构约束必须在全部受管对象上仍完整覆盖。
 10. 选择型内容不得重复询问同一关系问题；后续节点应消费前文结果。
 11. 每个伙伴单章必须显式登记 `基础CG画面` 与 `高好感CG画面`，二者都为可观察场面且不能被局部分流意外删除；不得继续依赖单一旧CG锚点由运行时猜第二张。
@@ -37,21 +37,21 @@
 25. 若某章已具备CG解锁状态但单章缺少足够明确、可观察的对应CG字段，增量QA应判为内容缺口并要求修复单章 owner；不得允许显示层临场创作一个替代画面来“补齐”。
 26. 关系门之后的后续章不能只写一句“情侣版/伙伴版”声明；必须在单章内登记可执行的具体分流契约（或语义等价结构），说明哪些距离、主动动作、共同习惯、称呼/身体接触属于情侣版，哪些亲密在伙伴版仍然成立，并逐项兼容人物性格 owner。
 27. 普通“存档 / 保存进度”必须是 Git current state 的只读确认，不得触发 `SAVE_EXPORT`、生成 ZIP 或增加 `STATE_REV`；只有明确外部导出/备份/checkpoint/ZIP 意图才允许进入 Save Manager。
-28. canonical Git state 的历史压缩、派生缓存清理与无消费者兼容字段去冗余必须在 canonical 候选提交/外部导入物化时完成，不能依赖“以后某次 SAVE_EXPORT”。
-29. 兼容 runtime 包必须在导出 manifest 中记录生成它的精确 Git commit SHA；MAJOR.MINOR 只做兼容标签，不能替代源码身份。
-30. 仓库结构或文档排版修改后必须通过 `qa/check_repository_hygiene.py`：不得把 ZIP、backup、patch、build/dist、缓存、持久化兼容 manifest 或写死具体 MAJOR.MINOR 的兼容包文件名重新提交进 source tree；受管文本保持 UTF-8、LF 与完整文件结尾。
+28. canonical Git state 的历史压缩、派生缓存清理与无消费者 legacy 字段去冗余必须在 canonical 候选提交/外部导入物化时完成，不能依赖“以后某次 SAVE_EXPORT”。
+29. 项目不得维护 `release`、`MAJOR.MINOR`、SemVer 或 `v3.11` 一类人工项目版本号；项目精确身份只认 Git commit SHA。
+30. 仓库结构或文档排版修改后必须通过 `qa/check_repository_hygiene.py`：不得把 ZIP、backup、patch、build/dist、缓存、旧 package manifest、compatibility runtime 目录/成员表/导出器/审计脚本，或写死的旧 runtime package 文件名重新提交进 source tree；受管文本保持 UTF-8、LF 与完整文件结尾。
 
 ## Global QA
 
-以下全部 PASS 才可正式交付 Git-first 结构或正式 release：
+以下全部 PASS 才可正式交付 Git-only 结构或把某个精确 Git commit 作为正式候选：
 
-### A. Git-first 治理
+### A. Git-only 治理
 
-1. `governance/project.md` 明确 Git `main` HEAD 为源码持久化权威。
-2. `runtime/registry.json` 是唯一机器运行主源；不得携带 ZIP 成员 bytes/SHA 注册表。
-3. Git source tree 不得持久化包级 `魂师修炼RPG_manifest.json`；兼容包内同名 manifest 必须由当前 registry + 当前 runtime member bytes 在导出时生成、标记为派生视图，并携带生成它的精确 `source_git_commit_sha`。
+1. `governance/project.md` 明确 Git `main` HEAD 为源码与当前状态持久化权威。
+2. `runtime/registry.json` 是唯一机器运行主源；不得携带 ZIP 成员 bytes/SHA 注册表或第二套 package manifest。
+3. registry 不得存在项目/package `release` 字段或独立 `versioning` block；`source_authority.identity` 必须是 `git_commit_sha`。
 4. `.github/workflows/qa.yml` 和 `qa/` 回归脚本存在且可运行。
-5. `main` source tree 不保存临时 build、backup、patch、测试输出、导出 ZIP 或其它可确定性再生的包级生成物；`qa/check_repository_hygiene.py` 必须同时检查跟踪文件命名、文本编码/换行、唯一 current state 与兼容包文件名不写死具体 release。
+5. `main` source tree 不保存临时 build、backup、patch、测试输出、导出 ZIP、compatibility runtime 目录、package manifest、runtime member list、runtime exporter、package audit 或其它无运行职责的派生包级生成物。
 
 ### B. 单一职责
 
@@ -73,39 +73,39 @@
 18. 常见用户意图必须有明确 dispatcher；route 必须有 owner、最小 source、access policy 与 state access。
 19. 大型 DM ONLY 文件只按对象/章节/节点选择性读取。
 20. BOOT 只读取启动切片，不无条件注入完整 registry。
-21. `SAVE_CURRENT` 必须是只读 route 事务，`SAVE_EXPORT` 必须继续由 Save Manager Skill 独占；显式导出 recognition 优先于普通保存确认，二者不得共享模糊的裸“存档”语义。
+21. `SAVE_CURRENT` 必须是只读 route 事务，外部 checkpoint `SAVE_EXPORT` 必须继续由 Save Manager Skill 独占；显式导出 recognition 优先于普通保存确认，二者不得共享模糊的裸“存档”语义。
 
 ### D. 状态
 
 22. `12_状态存档.md` 只拥有 schema、恢复/迁移、原子提交与持久化协议，不保存某次冒险当前值。
 23. registry 必须登记唯一 `current_state_owner`，且该文件真实存在于 source tree、没有被 `.gitignore` 排除；Git `main` HEAD 是当前状态权威。
-24. 普通游戏 route 不得原地改写已有 checkpoint，也不得绕过 `STATE_COMMIT` 建立第二个 current state。
-25. 外部 checkpoint 只能是 `checkpoint_import` / `SAVE_EXPORT` 的兼容输入输出，不能作为普通启动优先源。
-26. `STATE_REV` 只表示兼容 checkpoint lineage；普通 Git state commit 与 `SAVE_CURRENT` 不自动递增。
-27. 旧兼容字段只有仍有合法恢复/迁移消费者时才保留；序列化去冗余不得删除防重复或连续性职责数据。
+24. 普通游戏 route 不得原地改写已有外部 checkpoint，也不得绕过 `STATE_COMMIT` 建立第二个 current state。
+25. 外部 checkpoint 只能是 `checkpoint_import` / `SAVE_EXPORT` 的显式输入输出，不能作为普通启动优先源。
+26. `STATE_REV` 只表示外部 checkpoint lineage；普通 Git state commit 与 `SAVE_CURRENT` 不自动递增，也不得被称为项目版本。
+27. legacy 字段只有仍有合法恢复/迁移消费者时才保留；序列化去冗余不得删除防重复或连续性职责数据。
 28. 未明确执行 `STATE_MIGRATION` / `LOAD_SAVE` 时，不得用外部 checkpoint 覆盖 current Git state。
-29. canonical state 的近期日志压缩、重复派生缓存与可安全删除旧容器清理不得依赖兼容导出；最终 canonical 候选在 `STATE_COMMIT` 前就应符合当前序列化规范。
-30. `RUNTIME_PACKAGE / RUNTIME_PACKAGE_SHA256 / RUNTIME_RELEASE` 只允许作为外部兼容 checkpoint 元数据存在；规范化后的 canonical `state/current/SOUL_STATE_V1.yaml` 不得继续携带这些旧包绑定字段，也不得由普通运行重新写回。
+29. canonical state 的近期日志压缩、重复派生缓存与可安全删除旧容器清理不得依赖外部导出；最终 canonical 候选在 `STATE_COMMIT` 前就应符合当前序列化规范。
+30. `RUNTIME_PACKAGE / RUNTIME_PACKAGE_SHA256 / RUNTIME_RELEASE` 已退出现行状态协议；canonical state 不得携带，现行 `SAVE_EXPORT` 也不得重新生成这些字段。
 
-### E. 兼容运行包导出
+### E. Git-only 源码纪律
 
-31. 兼容 package release 只用于派生运行包；项目正式 release 身份仍是 Git commit SHA。
-32. 导出物成员只能来自 `compatibility/runtime-members.json`，并且包根 `魂师修炼RPG_manifest.json` 必须由导出器从当前 `runtime/registry.json` 与当前成员 bytes 现场生成，不能读取 source tree 中的旧副本。
-33. 生成 manifest 的 `source_git_commit_sha` 必须等于导出 checkout 的精确 Git `HEAD`，并通过包审计；相同 `MAJOR.MINOR` 标签的不同源码内容仍必须能由该 SHA 唯一分辨。
-34. 最终 ZIP 从磁盘重开后成员、JSON、bytes/SHA、route 与 registry 镜像一致，且 ZIP 文件名必须由 registry 当前 `release` 派生并与包内 release 一致。
-35. 导出包不得包含 `.github/`、仓库 QA 脚本、导出脚本、`dist/`、canonical `state/current/` 或其它 source-only 配置。
-36. 兼容 manifest 必须显式声明 canonical Git state 被排除、fallback 需要外部 checkpoint；package release 与 `STATE_REV` 保持独立。
+31. 项目不维护 numbered release；任何正式交付、回滚、比较或审计都以精确 Git commit SHA 为身份。
+32. `compatibility/` runtime member list、runtime ZIP exporter、package manifest、derived-export QA 与 package audit 均不得存在于 current tree。
+33. `source_authority` 不得暴露 `compatibility_manifest / compatibility_export_identity / compatibility_runtime_fallback` 等第二运行源元数据。
+34. Git source/state 不可用时必须失败关闭；不得自动加载旧 runtime ZIP、旧 package manifest 或聊天历史副本作为 fallback。
+35. Git tag 若存在，只能是可选的人类导航标签，不构成第二套版本主源，也不要求随普通维护递增。
+36. README、治理、索引、CI、QA 与状态协议不得保留已废止 runtime package 的执行说明或生成步骤。
 
 ## 存档 / Git state 迁移 QA
 
-只有明确执行 `STATE_MIGRATION` 或首次 checkpoint → Git current state bootstrap 时追加检查：
+只有明确执行 `STATE_MIGRATION` 或首次外部 checkpoint → Git current state bootstrap 时追加检查：
 
 1. 来源 checkpoint 合法且可解析。
-2. 新 revision（若本次迁移需要新 checkpoint lineage）与目标 schema/runtime binding 正确。
+2. 新 revision（若本次迁移需要新 checkpoint lineage）与目标 schema 正确。
 3. 除迁移协议明确允许的结构/确定性纠错外，既成游戏事实没有变化。
 4. 防重复与已结算标记保持语义等价。
 5. canonical `state/current/SOUL_STATE_V1.yaml` 可重新解析并通过 state QA。
-6. 若同时生成兼容 ZIP，必须从磁盘重开后成员和完整状态可读取。
+6. 若同时生成外部便携 checkpoint，必须从磁盘重开后完整状态可读取；它仍不成为项目主权威。
 
 ## 章节分片与选择语义专项 QA
 

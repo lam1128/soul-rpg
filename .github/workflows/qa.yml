@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
       - name: Install QA dependency
         run: python -m pip install --disable-pip-version-check pyyaml
-      - name: Run Git-first QA
+      - name: Run Git-only QA
         shell: bash
         run: |
           set -euo pipefail
@@ -29,9 +29,3 @@ jobs:
           python qa/check_content_contracts.py
           python qa/check_state_invariants.py --project .
           python qa/check_git_first_architecture.py --project .
-          python qa/check_derived_export.py --project .
-
-          release="$(python -c "import json; print(json.load(open('runtime/registry.json', encoding='utf-8'))['release'])")"
-          mkdir -p /tmp/soul-rpg-dist
-          python scripts/export_runtime_zip.py --project . --out-dir /tmp/soul-rpg-dist
-          python qa/audit_runtime_package.py "/tmp/soul-rpg-dist/魂师修炼RPG_v${release}.zip"

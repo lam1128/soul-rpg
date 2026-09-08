@@ -1,20 +1,9 @@
 {
   "project": "魂师修炼RPG",
-  "release": "3.11",
   "governance_schema": "GOV_GIT_ROUTE_SKILL_V1",
   "status": "active",
-  "versioning": {
-    "source_identity": "git_commit_sha",
-    "source_branch_authority": "main",
-    "compatibility_package_scheme": "MAJOR.MINOR",
-    "compatibility_release_owner": "runtime/registry.json#release",
-    "package_filename_must_match_release": true,
-    "package_manifest_must_embed_source_commit": true,
-    "member_release_stamps": "forbidden_redundant_metadata",
-    "member_identity": "compatibility manifest member registry + sha256 + generated source Git commit SHA; source identity remains Git commit SHA"
-  },
   "current": {
-    "governance_index": "魂师修炼RPG_文档索引与版本状态.md",
+    "governance_index": "魂师修炼RPG_项目索引.md",
     "manifest": "runtime/registry.json",
     "startup_router_fast_entry": "00B_STARTUP_ROUTER_FAST_ENTRY.md",
     "control_intent_pre_router": "00C_CONTROL_INTENT_PRE_ROUTER.md",
@@ -35,14 +24,14 @@
     "DEEP_ON_INSUFFICIENT": "优先来源不足时才扩读fallback，仍保持最小必要范围。"
   },
   "state_access_levels": {
-    "READ_CONSUMER": "只读 Git main HEAD 当前稳定状态或外部兼容 checkpoint 候选。",
+    "READ_CONSUMER": "只读 Git main HEAD 当前稳定状态或外部 checkpoint 候选。",
     "RECONCILE_CANDIDATE": "可校验/比较/计算候选变化，不修改稳定 Git state 或外部 checkpoint。",
     "RUNTIME_MUTATION": "正式运行 route 先对 runtime_working_state 形成一次原子候选；校验通过后必须经登记的 STATE_COMMIT 写入当前稳定 Git state。",
-    "PERSIST_EXPORT": "只允许从当前稳定 Git state 生成兼容 checkpoint 导出或显式迁移产物；ZIP 不再是主持久化权威。"
+    "PERSIST_EXPORT": "只允许从当前稳定 Git state 生成外部便携 checkpoint 或显式迁移产物；外部文件不构成项目主权威。"
   },
   "control_intents": {
     "PROJECT_CONFIG_CONTROL": {
-      "recognition_owner": "魂师修炼RPG_文档索引与版本状态.md",
+      "recognition_owner": "魂师修炼RPG_项目索引.md",
       "priority": 1,
       "recognition_sections": [
         "§7 文件维护与QA"
@@ -132,10 +121,10 @@
   "topic_routes": {
     "governance_boot": {
       "access_policy": "BOOT",
-      "owner": "魂师修炼RPG_文档索引与版本状态.md",
+      "owner": "魂师修炼RPG_项目索引.md",
       "sources": [
         {
-          "file": "魂师修炼RPG_文档索引与版本状态.md",
+          "file": "魂师修炼RPG_项目索引.md",
           "sections": [
             "治理顺序与读取边界"
           ]
@@ -882,11 +871,10 @@
     ],
     "global": "QA_项目验收规则.md#Global QA",
     "source_regression_suite": "qa/",
-    "git_workflow": ".github/workflows/qa.yml",
-    "compatibility_export_audit": "qa/audit_runtime_package.py"
+    "git_workflow": ".github/workflows/qa.yml"
   },
   "tombstone_policy": {
-    "owner": "governance/project.md + 魂师修炼RPG_文档索引与版本状态.md#§6 墓碑与仓库卫生",
+    "owner": "governance/project.md + 魂师修炼RPG_项目索引.md#§6 仓库卫生",
     "enforced_by": "QA_项目验收规则.md + qa/"
   },
   "freeze": {
@@ -896,7 +884,7 @@
   "external_sources": {
     "checkpoint_import": {
       "type": "project_file_selector",
-      "role": "non_authoritative_compatibility_import_candidate",
+      "role": "non_authoritative_external_checkpoint_candidate",
       "checkpoint_format": "SOUL_STATE_V1",
       "native_schema_versions": [
         "2.1"
@@ -922,14 +910,13 @@
     "runtime_working_state": "transaction_candidate_initialized_from_current_git_state",
     "persisted_current_source": "state_model.current_state_owner",
     "ordinary_persist_owner": "internal_services.state_commit",
-    "compatibility_export_owner": "control_intents.SAVE_EXPORT",
     "migration_owner": "control_intents.STATE_MIGRATION",
     "load_import_owner": "control_intents.LOAD_SAVE",
-    "state_rev_semantics": "compatibility checkpoint lineage revision; ordinary Git state commits do not increment STATE_REV",
+    "checkpoint_export_owner": "control_intents.SAVE_EXPORT",
+    "state_rev_semantics": "external checkpoint lineage revision; ordinary Git state commits do not increment STATE_REV; not a project version",
     "project_state_persistence": "git_main_head",
-    "checkpoint_persistence": "derived_import_export_only_non_authoritative",
-    "startup_behavior": "read current_state_owner directly from current Git main HEAD; do not require checkpoint upload",
-    "compatibility_runtime_fallback": "compatibility runtime ZIP excludes canonical Git state and uses external checkpoint import when no Git checkout is available"
+    "checkpoint_persistence": "explicit_external_import_export_only_non_authoritative",
+    "startup_behavior": "read current_state_owner directly from current Git main HEAD; do not require checkpoint upload"
   },
   "companion_episode_files": {
     "CORE_OU_C01": "DM_ONLY_C10_伙伴篇章/CORE_OU_C01.md",
@@ -978,16 +965,12 @@
     "CORE_ZHANG_C04": "DM_ONLY_C10_伙伴篇章/CORE_ZHANG_C04.md",
     "CORE_ZHANG_C05": "DM_ONLY_C10_伙伴篇章/CORE_ZHANG_C05.md"
   },
-  "release_semantics": "compatibility_runtime_export_only",
   "source_authority": {
     "mode": "git_first",
     "branch": "main",
     "identity": "git_commit_sha",
     "governance": "governance/project.md",
     "runtime_registry": "runtime/registry.json",
-    "compatibility_manifest": "魂师修炼RPG_manifest.json",
-    "compatibility_manifest_role": "derived_export_view",
-    "compatibility_export_identity": "generated_view.source_git_commit_sha",
     "state_authority": "state/current/SOUL_STATE_V1.yaml"
   },
   "internal_services": {

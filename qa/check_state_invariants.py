@@ -47,20 +47,22 @@ def main() -> None:
 
     for legacy in ('RUNTIME_PACKAGE', 'RUNTIME_PACKAGE_SHA256', 'RUNTIME_RELEASE'):
         if legacy in header:
-            fail(f'canonical Git state still contains legacy package binding: {legacy}')
+            fail(f'canonical Git state still contains retired runtime package binding: {legacy}')
 
     if state_model.get('persisted_current_source') != 'state_model.current_state_owner':
         fail('Git state not persisted authority')
     if state_model.get('project_state_persistence') != 'git_main_head':
         fail('project state persistence is not git_main_head')
-    if state_model.get('checkpoint_persistence') != 'derived_import_export_only_non_authoritative':
-        fail('checkpoint role mismatch')
+    if state_model.get('checkpoint_persistence') != 'explicit_external_import_export_only_non_authoritative':
+        fail('external checkpoint role mismatch')
+    if 'compatibility_runtime_fallback' in state_model:
+        fail('state model still exposes compatibility runtime fallback')
 
     external = registry.get('external_sources', {}).get('checkpoint_import')
     if not external or external.get('checkpoint_format') != 'SOUL_STATE_V1':
         fail('checkpoint_import source missing')
-    if external.get('role') != 'non_authoritative_compatibility_import_candidate':
-        fail('checkpoint_import role must be non-authoritative')
+    if external.get('role') != 'non_authoritative_external_checkpoint_candidate':
+        fail('checkpoint_import role must be non-authoritative external input')
 
     service = registry.get('internal_services', {}).get('state_commit', {})
     if service.get('skill') != 'soul-rpg-project-maintainer' or service.get('operation') != 'STATE_COMMIT':
@@ -92,15 +94,15 @@ def main() -> None:
     if '## 2C. SAVE_CURRENT｜Git 当前进度确认' not in interaction:
         fail('SAVE_CURRENT interaction contract missing')
     if '只有用户明确说“导出存档' not in interaction:
-        fail('interaction does not separate save from export')
+        fail('interaction does not separate save from external checkpoint export')
     if '## 16. 存档确认｜Git current state' not in ui:
         fail('Git save confirmation UI missing')
     if '单独的“存档 / 保存进度 / 存一下档”不得命中本事务' not in schema:
         fail('SAVE_EXPORT exclusion for bare save missing')
-    if '不再承担“等到导出时才清理”的职责' not in schema:
+    if '不承担“等到导出时才清理”的职责' not in schema:
         fail('canonical state cleanup still depends on export')
-    if '不是 Git current state 的源码或运行权威' not in schema:
-        fail('compatibility package metadata authority boundary missing')
+    if '已从现行状态协议中退役' not in schema:
+        fail('retired runtime package fields are not explicitly tombstoned')
 
     ignored = (project / '.gitignore').read_text(encoding='utf-8')
     if 'state/' in {line.strip() for line in ignored.splitlines()}:
@@ -121,7 +123,7 @@ def main() -> None:
         'state_rev': header['STATE_REV'],
         'save_current_route': current.get('route'),
         'save_skill': 'soul-rpg-save-manager',
-        'legacy_package_bindings': 0,
+        'legacy_runtime_package_bindings': 0,
     }, ensure_ascii=False))
 
 

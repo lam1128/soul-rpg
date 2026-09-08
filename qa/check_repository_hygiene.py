@@ -10,6 +10,10 @@ FORBIDDEN_BASENAMES = {
     '.DS_Store',
     'Thumbs.db',
     '魂师修炼RPG_manifest.json',
+    'runtime-members.json',
+    'export_runtime_zip.py',
+    'audit_runtime_package.py',
+    'check_derived_export.py',
 }
 FORBIDDEN_SUFFIXES = {
     '.zip',
@@ -24,6 +28,7 @@ FORBIDDEN_SUFFIXES = {
     '.pyo',
 }
 FORBIDDEN_DIRS = {
+    'compatibility',
     'dist',
     'build',
     'tmp',
@@ -38,7 +43,7 @@ FORBIDDEN_DIRS = {
     'venv',
 }
 FORBIDDEN_NAME_TOKENS = ('_old', '_backup', 'final_final')
-HARDCODED_PACKAGE_RE = re.compile(r'魂师修炼RPG_v\d+\.\d+\.zip')
+LEGACY_RUNTIME_PACKAGE_RE = re.compile(r'魂师修炼RPG_v\d+\.\d+\.zip')
 
 
 def fail(message: str) -> None:
@@ -68,7 +73,7 @@ def main() -> None:
 
     artifact_violations: list[str] = []
     format_violations: list[str] = []
-    hardcoded_package_refs: list[str] = []
+    legacy_package_refs: list[str] = []
     json_files = 0
     markdown_files = 0
 
@@ -108,8 +113,8 @@ def main() -> None:
 
         if '\t' in text:
             format_violations.append(f'{rel}: tab character')
-        if HARDCODED_PACKAGE_RE.search(text):
-            hardcoded_package_refs.append(rel)
+        if LEGACY_RUNTIME_PACKAGE_RE.search(text):
+            legacy_package_refs.append(rel)
 
         if path.suffix.lower() == '.json':
             json_files += 1
@@ -127,8 +132,8 @@ def main() -> None:
         fail('tracked artifact/tombstone paths: ' + ', '.join(sorted(set(artifact_violations))))
     if format_violations:
         fail('text hygiene violations: ' + '; '.join(format_violations))
-    if hardcoded_package_refs:
-        fail('hard-coded compatibility package filenames outside registry-derived export: ' + ', '.join(sorted(set(hardcoded_package_refs))))
+    if legacy_package_refs:
+        fail('legacy numbered runtime package filename references: ' + ', '.join(sorted(set(legacy_package_refs))))
 
     state_dir = project / 'state' / 'current'
     state_files = sorted(
@@ -145,7 +150,7 @@ def main() -> None:
         'markdown_files': markdown_files,
         'json_files': json_files,
         'forbidden_artifacts': 0,
-        'hardcoded_package_filenames': 0,
+        'legacy_runtime_package_refs': 0,
     }, ensure_ascii=False))
 
 
