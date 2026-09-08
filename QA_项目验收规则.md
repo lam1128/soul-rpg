@@ -22,6 +22,10 @@
 10. 选择型内容不得重复询问同一关系问题；后续节点应消费前文结果。
 11. 若内容 owner 声明记忆画面/CG 锚点，检查其为可观察场面且不能被局部分流意外删除。
 12. 若修改 CG 大厅，检查入口、只读边界、未解锁隐藏策略与既有 UI 约束同步。
+13. 所有会重复出现的游戏 UI 必须登记在通用 UI owner 或魂兽遭遇 UI owner 中；不得长期保留未登记的临时状态卡、伙伴卡、篇章卡、读档卡、现实活动卡、猎魂卡或角色创建卡。
+14. 同一 UI 类型的标题、字段顺序、分组和底部导航应稳定；动态值和条件行可由领域 owner 注入/省略，但不得每轮重新设计结构。
+15. CG 收藏文案只描述直接可见的构图、动作、视线、表情、物件、光线和互动，不得加入关系总结、意义解释、剧情总结或抒情收尾。
+16. 普通自由对白/连续叙事不得被 UI 模板反向限制；固定模板只覆盖菜单、导航、选择卡、状态卡和结果卡等重复界面。
 
 ## Global QA
 
@@ -44,34 +48,35 @@
 10. UI 模板只拥有字段/顺序/排版，业务值运行时从 owner 注入。
 11. Kernel 只拥有编排，不重新实现战斗、成长、经济、世界、篇章或状态规则。
 12. QA 本身不携带业务常量。
+13. 重复 UI 必须落在正式 UI owner；除魂兽遭遇/战斗专用卡外，其余通用重复界面不得分散复制到交互、世界、状态或篇章 owner 中。
 
 ### C. 路由
 
-13. control intent 先于 ordinary gameplay route；control 可直接 dispatch 到 route 或 Skill。
-14. 所有 `ordinary_gameplay` route 必须且只能在 `interaction_route_activation` 出现一次，最终有且仅有一个 fallback。
-15. 非 support route 必须存在真实入口；Skill 型 control intent 不得保留同职责空壳 route。
-16. 过宽 route 必须拆分到单一主 owner；嵌套事务使用 `delegates_to`。
-17. 常见用户意图必须有明确 dispatcher；route 必须有 owner、最小 source、access policy 与 state access。
-18. 大型 DM ONLY 文件只按对象/章节/节点选择性读取。
-19. BOOT 只读取启动切片，不无条件注入完整 registry。
+14. control intent 先于 ordinary gameplay route；control 可直接 dispatch 到 route 或 Skill。
+15. 所有 `ordinary_gameplay` route 必须且只能在 `interaction_route_activation` 出现一次，最终有且仅有一个 fallback。
+16. 非 support route 必须存在真实入口；Skill 型 control intent 不得保留同职责空壳 route。
+17. 过宽 route 必须拆分到单一主 owner；嵌套事务使用 `delegates_to`。
+18. 常见用户意图必须有明确 dispatcher；route 必须有 owner、最小 source、access policy 与 state access。
+19. 大型 DM ONLY 文件只按对象/章节/节点选择性读取。
+20. BOOT 只读取启动切片，不无条件注入完整 registry。
 
 ### D. 状态
 
-20. `12_状态存档.md` 只拥有 schema、恢复/迁移、原子提交与持久化协议，不保存某次冒险当前值。
-21. registry 必须登记唯一 `current_state_owner`，且该文件真实存在于 source tree、没有被 `.gitignore` 排除；Git `main` HEAD 是当前状态权威。
-22. 普通游戏 route 不得原地改写已有 checkpoint，也不得绕过 `STATE_COMMIT` 建立第二个 current state。
-23. 外部 checkpoint 只能是 `checkpoint_import` / `SAVE_EXPORT` 的兼容输入输出，不能作为普通启动优先源。
-24. `STATE_REV` 只表示兼容 checkpoint lineage；普通 Git state commit 不自动递增。
-25. 旧兼容字段只有仍有合法恢复/迁移消费者时才保留；序列化去冗余不得删除防重复或连续性职责数据。
-26. 未明确执行 `STATE_MIGRATION` / `LOAD_SAVE` 时，不得用外部 checkpoint 覆盖 current Git state。
+21. `12_状态存档.md` 只拥有 schema、恢复/迁移、原子提交与持久化协议，不保存某次冒险当前值。
+22. registry 必须登记唯一 `current_state_owner`，且该文件真实存在于 source tree、没有被 `.gitignore` 排除；Git `main` HEAD 是当前状态权威。
+23. 普通游戏 route 不得原地改写已有 checkpoint，也不得绕过 `STATE_COMMIT` 建立第二个 current state。
+24. 外部 checkpoint 只能是 `checkpoint_import` / `SAVE_EXPORT` 的兼容输入输出，不能作为普通启动优先源。
+25. `STATE_REV` 只表示兼容 checkpoint lineage；普通 Git state commit 不自动递增。
+26. 旧兼容字段只有仍有合法恢复/迁移消费者时才保留；序列化去冗余不得删除防重复或连续性职责数据。
+27. 未明确执行 `STATE_MIGRATION` / `LOAD_SAVE` 时，不得用外部 checkpoint 覆盖 current Git state。
 
 ### E. 兼容运行包导出
 
-27. 兼容 package release 只用于派生运行包；项目正式 release 身份仍是 Git commit SHA。
-28. 导出物成员只能来自 `compatibility/runtime-members.json`，并且 root `魂师修炼RPG_manifest.json` 从 `runtime/registry.json` 生成。
-29. 最终 ZIP 从磁盘重开后成员、JSON、bytes/SHA、route 与 registry 镜像一致。
-30. 导出包不得包含 `.github/`、仓库 QA 脚本、导出脚本、`dist/`、canonical `state/current/` 或其它 source-only 配置。
-31. 兼容 manifest 必须显式声明 canonical Git state 被排除、fallback 需要外部 checkpoint；package release 与 `STATE_REV` 保持独立。
+28. 兼容 package release 只用于派生运行包；项目正式 release 身份仍是 Git commit SHA。
+29. 导出物成员只能来自 `compatibility/runtime-members.json`，并且 root `魂师修炼RPG_manifest.json` 从 `runtime/registry.json` 生成。
+30. 最终 ZIP 从磁盘重开后成员、JSON、bytes/SHA、route 与 registry 镜像一致。
+31. 导出包不得包含 `.github/`、仓库 QA 脚本、导出脚本、`dist/`、canonical `state/current/` 或其它 source-only 配置。
+32. 兼容 manifest 必须显式声明 canonical Git state 被排除、fallback 需要外部 checkpoint；package release 与 `STATE_REV` 保持独立。
 
 ## 存档 / Git state 迁移 QA
 
@@ -91,3 +96,4 @@
 - `companion_episode` route 每次运行最多解析并读取 1 个 `DM_ONLY_C10_伙伴篇章/*.md`。
 - 每个单章文件必须维持既有 8 个不同 `CHOICE01..08` 语义职责与固定场景标签约束。
 - 相邻选择不得复问同一关系规则；CG、高理解回报、低分仍有戏、标题回收与角色新信息必须继续由章内具体事件执行。
+- 每章 CG 锚点除了满足章内事件要求，还必须能转换为纯视觉收藏描述：至少有明确空间、双方位置/距离、动作或手势、关键物件/环境；不得主要依赖旁白解释其意义。
