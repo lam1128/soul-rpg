@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+import argparse, copy, hashlib, json, zipfile
+from pathlib import Path
+
+MANIFEST = '魂师修炼RPG_manifest.json'
+REGISTRY = 'runtime/registry.json'
+MEMBERS_CFG = 'compatibility/runtime-members.json'
+
+def sha256(b: bytes) -> str:
+    return hashlib.sha256(b).hexdigest()
+
+def load_json(path: Path):
+    return json.loads(path.read_text(encoding='utf-8'))
+
+def build_manifest(project: Path):
+    registry = load_json(project / REGISTRY)
+    cfg = load_json(project / MEMBERS_CFG)
+    members = list(cfg['members'])
+    if cfg.get('manifest') != MANIFEST:
+        raise SystemExit('runtime-members manifest path mismatch')
+    if MANIFEST not in members:
+        raise SystemExit('runtime-members must include manifest')
+    if len(members) != len(set(members)):
+        raise SystemExit('duplicate runtime member path')
+
+    derived = copy.deepcopy(registry)
+    derived['generated_view'] = {
+        'derived': True,
+        'source': REGISTRY,
+        'purpose': 'compatibility_runtime_export',
+        'source_authority': 'git main HEAD',
+        'state_projection': 'canonical_git_state_excluded_use_external_checkpoint_import'
+    }
+    derived['hash_policy'] = {
+        'algorithm': 'sha256',
+        'manifest_self_hash': 'omitted_to_avoid_self_reference',
+        'hashes_cover': 'all other formal package members'
+    }
+    files = {}
+    for name in members:
+        if name == MANIFEST:
+            files[name] = {}
+            continue
+        path = project / name
+        if not path.is_file():
+            raise SystemExit(f'missing runtime member: {name}')
+        raw = path.read_bytes()
+        files[name] = {'bytes': len(raw), 'sha256': sha256(raw)}
+    derived['files'] = files
+    return derived, members
+
+def manifest_bytes(project: Path):
+    m, members = build_manifest(project)
+    raw = (json.dumps(m, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
+    return raw, members
+
+def verify_zip(path: Path):
+    with zipfile.ZipFile(path) as z:
+        names = z.namelist()
+        if len(names) != len(set(names)):
+            raise SystemExit('duplicate zip members')
+        if MANIFEST not in names:
+            raise SystemExit('manifest missing')
+        data = json.loads(z.read(MANIFEST))
+        registered = set(data.get('files', {}))
+        if registered != set(names):
+            raise SystemExit('zip membership mismatch')
+        for name, meta in data['files'].items():
+            if name == MANIFEST:
+                continue
+            raw = z.read(name)
+            if meta.get('bytes') != len(raw):
+                raise SystemExit(f'bytes mismatch: {name}')
+            if meta.get('sha256') != sha256(raw):
+                raise SystemExit(f'sha mismatch: {name}')
+    return True
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--project', default='.')
+    ap.add_argument('--out')
+    ap.add_argument('--sync-manifest', action='store_true')
+    args = ap.parse_args()
+    project = Path(args.project).resolve()
+    raw_manifest, members = manifest_bytes(project)
+    if args.sync_manifest:
+        (project / MANIFEST).write_bytes(raw_manifest)
+    if args.out:
+        out = Path(args.out)
+        if not out.is_absolute():
+            out = project / out
+        out.parent.mkdir(parents=True, exist_ok=True)
+        # Deterministic compatibility export: source bytes define the artifact, not wall-clock ZIP metadata.
+        with zipfile.ZipFile(out, 'w', compression=zipfile.ZIP_STORED) as z:
+            for name in members:
+                raw = raw_manifest if name == MANIFEST else (project / name).read_bytes()
+                zi = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+                zi.create_system = 3
+                zi.compress_type = zipfile.ZIP_STORED
+                zi.external_attr = (0o100644 & 0xFFFF) << 16
+                z.writestr(zi, raw)
+        verify_zip(out)
+        print(json.dumps({'status':'PASS','out':str(out),'members':len(members)}, ensure_ascii=False))
+    elif not args.sync_manifest:
+        print(raw_manifest.decode('utf-8'))
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,1534 @@
+SAVE_HEADER:
+  SCHEMA_VERSION: '2.1'
+  CHECKPOINT_FORMAT_VERSION: SOUL_STATE_V1
+  ADVENTURE_ID: ADV_LZN_20260828_A01
+  STATE_REV: 39
+  ACTIVE_TRANSACTION_ID: null
+  LAST_COMMITTED_TRANSACTION_ID: TX_RUNTIME_OU_C01_FIRST_CLEAR_SESSION
+  PHASE: ADVENTURE
+  CHAR_CREATE_STEP: DONE
+  PLAYER_GUIDE_SHOWN: 'YES'
+  SAVED_AT_REAL_TIMESTAMP_WITH_OFFSET: '2026-09-08T16:02:39+02:00'
+  USER_TIMEZONE: Europe/Berlin
+  RUNTIME_PACKAGE: 魂师修炼RPG_v3.11.zip
+  RUNTIME_PACKAGE_SHA256: 4d0f94014e01ec7ea05e4a3258e7a7bab54541d12d8c14248910d9eca2280433
+  RUNTIME_RELEASE: '3.11'
+  MIGRATION_PROVENANCE:
+    FROM_SCHEMA_VERSION: '2.1'
+    FROM_STATE_REV: 38
+    MIGRATION_KIND: GIT_STATE_BOOTSTRAP_V1
+    GAMEPLAY_FACTS_CHANGED: false
+    CORRECTION_SUMMARY: null
+PLAYER_SHEET:
+  ACTOR_ID: PC00
+  NAME: 林昭宁
+  SEX: Female
+  AGE: 20
+  LEVEL: 26
+  TITLE: 大魂师
+  XP_CURRENT: 202.5
+  XP_TO_NEXT: 1320
+  BOTTLE_NECK_BANKED_XP: 0
+  MARTIAL_SOUL_ID: A_FROSTFEATHER_BOW
+  MARTIAL_SOUL_NAME: 霜翎弓
+  CLASS: 远程强攻系
+  HP: 600
+  MAX_HP: 600
+  SOUL_POWER: 272
+  MAX_SOUL_POWER: 272
+  ATK: 96
+  DEF: 52
+  SOUL_RINGS:
+  - SLOT: 1
+    BEAST: 风羽隼
+    YEARS: 378
+    COLOR: 黄
+  - SLOT: 2
+    BEAST: 银翼雕
+    YEARS: 826
+    COLOR: 黄
+  SOUL_SKILLS:
+  - SLOT: 1
+    NAME: 疾风箭
+    COST_SOUL_POWER: 18
+    EFFECT: 单体150% ATK伤害
+  - SLOT: 2
+    NAME: 追羽连射
+    COST_SOUL_POWER: 32
+    EFFECT: 连续2击，每击85% ATK伤害
+  MONEY:
+    GOLD: 15
+    SILVER: 1
+    COPPER: 0
+    TOTAL_COPPER: 1310
+  MEDICINE_INVENTORY:
+    止血恢复药: 1
+    强效恢复药: 0
+    高阶恢复药: 0
+  MEDICINE_CARRY_CAP: 2
+  LAST_MEAL_RECOVERY_WORLD_TIME: Day 3 | 19:42
+REAL_ACTIVITY_SESSION:
+  STATUS: NONE
+  TYPE: NONE
+  START_AT_REAL_TIMESTAMP_WITH_OFFSET: null
+  START_STATE_REV: null
+  NARRATIVE_OVERLAY: NONE
+REAL_ACTIVITY_DAILY_LEDGER:
+  '2026-08-28':
+    WORK_CREDITED_MINUTES: 23
+    SLEEP_CREDITED_MINUTES: 42
+  '2026-08-29':
+    WORK_CREDITED_MINUTES: 0
+    SLEEP_CREDITED_MINUTES: 393
+COMPANION_ROSTER:
+- CORE_OU
+- CORE_HE
+- CORE_WU
+- CORE_WEI
+- CORE_SA
+- CORE_GUI
+- CORE_YANG
+- CORE_DA
+- CORE_ZHANG
+ANCHOR_COMPANION_STATE:
+  ANCHOR_COMPANION_ID: CORE_OU
+  STATUS: ACTIVE
+  CURRENTLY_WITH_PC: true
+COMPANION_PROFILES:
+  CORE_OU:
+    NAME: 温鸥
+    LEVEL: 26
+    HP: 668
+    MAX_HP: 668
+    SOUL_POWER: 260
+    MAX_SOUL_POWER: 260
+    ATK: 98
+    DEF: 64
+    MARTIAL_SOUL: 寒星剑
+    CLASS: 强攻系
+    RINGS:
+    - SLOT: 1
+      BEAST: 风羽隼
+      YEARS: 404
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 疾风魔狼
+      YEARS: 795
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 星切
+      EFFECT: 消耗18魂力；造成145% ATK单体伤害。
+    - SLOT: 2
+      NAME: 回锋
+      EFFECT: 消耗30魂力；造成180% ATK单体伤害。
+    CURRENT_AVAILABILITY: PRESENT_WITH_PC
+  CORE_HE:
+    NAME: 何川
+    LEVEL: 26
+    HP: 590
+    MAX_HP: 634
+    SOUL_POWER: 310
+    MAX_SOUL_POWER: 338
+    ATK: 54
+    DEF: 62
+    MARTIAL_SOUL: 照心灯
+    CLASS: 辅助系
+    RINGS:
+    - SLOT: 1
+      BEAST: 青纹鹿
+      YEARS: 441
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 翡翠叶灵
+      YEARS: 828
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 灯火复元
+      EFFECT: 消耗18魂力；恢复一名目标22%最大HP。
+    - SLOT: 2
+      NAME: 明照
+      EFFECT: 消耗30魂力；一名目标接下来2次攻击的最终伤害+18%。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+  CORE_WU:
+    NAME: 沈昕
+    LEVEL: 26
+    HP: 600
+    MAX_HP: 644
+    SOUL_POWER: 300
+    MAX_SOUL_POWER: 326
+    ATK: 80
+    DEF: 61
+    MARTIAL_SOUL: 眠青藤
+    CLASS: 控制系
+    RINGS:
+    - SLOT: 1
+      BEAST: 鬼藤
+      YEARS: 450
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 雪棘藤
+      YEARS: 850
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 眠藤缠绕
+      EFFECT: 消耗18魂力；造成90% ATK伤害；目标下一次攻击最终伤害-20%。
+    - SLOT: 2
+      NAME: 青棘刺
+      EFFECT: 消耗30魂力；造成125% ATK伤害；下一敌方阶段结束再受20+10%ATK伤害。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+  CORE_WEI:
+    NAME: 陆晨
+    LEVEL: 26
+    HP: 700
+    MAX_HP: 758
+    SOUL_POWER: 240
+    MAX_SOUL_POWER: 260
+    ATK: 78
+    DEF: 82
+    MARTIAL_SOUL: 赤麟甲犀
+    CLASS: 防御系
+    RINGS:
+    - SLOT: 1
+      BEAST: 铁背山猪
+      YEARS: 408
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 疾风魔狼
+      YEARS: 795
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 赤麟冲撞
+      EFFECT: 消耗18魂力；造成110% ATK单体伤害；自身到下一次行动前受到伤害-18%。
+    - SLOT: 2
+      NAME: 鳞甲架势
+      EFFECT: 消耗30魂力；自身到下一次行动前受到伤害-35%，并获得等于自身最大HP10%的护盾。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+  CORE_SA:
+    NAME: 撒宁
+    LEVEL: 26
+    HP: 610
+    MAX_HP: 656
+    SOUL_POWER: 295
+    MAX_SOUL_POWER: 321
+    ATK: 76
+    DEF: 62
+    MARTIAL_SOUL: 玄纹灵鸦
+    CLASS: 控制系
+    RINGS:
+    - SLOT: 1
+      BEAST: 碧叶螳螂
+      YEARS: 429
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 风羽隼
+      YEARS: 800
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 断句
+      EFFECT: 消耗18魂力；造成90% ATK单体伤害；目标下一次攻击最终伤害-18%。
+    - SLOT: 2
+      NAME: 反证
+      EFFECT: 消耗30魂力；若目标上一行动使用魂技，则其下一次魂技魂力消耗+35%（向上取整）；否则其下一次普通攻击最终伤害-20%。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+  CORE_GUI:
+    NAME: 鬼铃
+    LEVEL: 26
+    HP: 570
+    MAX_HP: 610
+    SOUL_POWER: 260
+    MAX_SOUL_POWER: 282
+    ATK: 96
+    DEF: 52
+    MARTIAL_SOUL: 寻迹狐
+    CLASS: 敏攻系
+    RINGS:
+    - SLOT: 1
+      BEAST: 斑斓猫
+      YEARS: 395
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 风羽隼
+      YEARS: 823
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 狐跃
+      EFFECT: 消耗18魂力；造成150% ATK单体伤害。
+    - SLOT: 2
+      NAME: 双影爪
+      EFFECT: 消耗30魂力；连续2击，每击90% ATK。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+  CORE_YANG:
+    NAME: 顾蓉
+    LEVEL: 26
+    HP: 600
+    MAX_HP: 646
+    SOUL_POWER: 330
+    MAX_SOUL_POWER: 360
+    ATK: 48
+    DEF: 64
+    MARTIAL_SOUL: 白露莲
+    CLASS: 治疗系
+    RINGS:
+    - SLOT: 1
+      BEAST: 青纹鹿
+      YEARS: 421
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 翡翠叶灵
+      YEARS: 847
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 白露
+      EFFECT: 消耗18魂力；恢复一名目标24%最大HP。
+    - SLOT: 2
+      NAME: 莲护
+      EFFECT: 消耗30魂力；一名目标获得等于蓉最大HP18%的护盾。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+  CORE_DA:
+    NAME: 周大为
+    LEVEL: 26
+    HP: 664
+    MAX_HP: 688
+    SOUL_POWER: 122
+    MAX_SOUL_POWER: 314
+    ATK: 52
+    DEF: 62
+    MARTIAL_SOUL: 雷鸣鼓
+    CLASS: 辅助系
+    RINGS:
+    - SLOT: 1
+      BEAST: 风狒狒
+      YEARS: 406
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 流火蝎
+      YEARS: 792
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 震鼓
+      EFFECT: 消耗18魂力；选择1名其他伙伴，其下一次攻击最终伤害+22%。
+    - SLOT: 2
+      NAME: 齐鸣
+      EFFECT: 消耗30魂力；全体其他伙伴到各自下一次行动结束前受到伤害-12%。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+  CORE_ZHANG:
+    NAME: 林昀
+    LEVEL: 26
+    HP: 630
+    MAX_HP: 678
+    SOUL_POWER: 260
+    MAX_SOUL_POWER: 282
+    ATK: 97
+    DEF: 66
+    MARTIAL_SOUL: 镜影豹
+    CLASS: 强攻系
+    RINGS:
+    - SLOT: 1
+      BEAST: 碧叶螳螂
+      YEARS: 437
+      COLOR: 黄
+    - SLOT: 2
+      BEAST: 石甲蜥
+      YEARS: 807
+      COLOR: 黄
+    SKILLS:
+    - SLOT: 1
+      NAME: 镜影突袭
+      EFFECT: 消耗18魂力；造成150% ATK单体伤害。
+    - SLOT: 2
+      NAME: 折光护身
+      EFFECT: 消耗30魂力；造成125% ATK伤害；自身到下一行动前受到伤害-25%。
+    CURRENT_AVAILABILITY: OFFSCREEN_DEFAULT_SCHEDULE
+RELATION_STATE:
+  CORE_OU:
+    ACQUAINTED: true
+    STABLE_COMPANION: true
+    EPISODE_AFFINITY_TOTAL: 19
+    CHAPTER_BEST_SCORE:
+      1: 19
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS:
+    - TRUST_AUTONOMY
+  CORE_HE:
+    ACQUAINTED: true
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 0
+    CHAPTER_BEST_SCORE:
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS: []
+  CORE_WU:
+    ACQUAINTED: true
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 0
+    CHAPTER_BEST_SCORE:
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS: []
+  CORE_WEI:
+    ACQUAINTED: true
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 0
+    CHAPTER_BEST_SCORE:
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS: []
+  CORE_SA:
+    ACQUAINTED: false
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 0
+    CHAPTER_BEST_SCORE:
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS: []
+  CORE_GUI:
+    ACQUAINTED: true
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 0
+    CHAPTER_BEST_SCORE:
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS: []
+  CORE_YANG:
+    ACQUAINTED: true
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 0
+    CHAPTER_BEST_SCORE:
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS: []
+  CORE_DA:
+    ACQUAINTED: true
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 18
+    CHAPTER_BEST_SCORE:
+      1: 18
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS:
+    - ACCEPTED_WITHOUT_FIXING
+  CORE_ZHANG:
+    ACQUAINTED: true
+    STABLE_COMPANION: false
+    EPISODE_AFFINITY_TOTAL: 0
+    CHAPTER_BEST_SCORE:
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+    ROMANCE_ELIGIBLE: false
+    ROMANCE_ACTIVE: false
+    ROMANCE_FLAGS: []
+PLAYER_DISCOVERY_STATE:
+  CORE_OU:
+    MET_IN_PLAY: true
+  CORE_HE:
+    MET_IN_PLAY: false
+  CORE_WU:
+    MET_IN_PLAY: false
+  CORE_WEI:
+    MET_IN_PLAY: false
+  CORE_SA:
+    MET_IN_PLAY: false
+  CORE_GUI:
+    MET_IN_PLAY: false
+  CORE_YANG:
+    MET_IN_PLAY: false
+  CORE_DA:
+    MET_IN_PLAY: true
+  CORE_ZHANG:
+    MET_IN_PLAY: false
+COMPANION_EPISODE_STATE:
+  CORE_OU:
+    CHAPTER_1:
+      UNLOCKED: true
+      FIRST_CLEAR_DONE: true
+      CANON_ENDING_ID: ENDING_COOPERATIVE
+      FIRST_CLEAR_REWARD_CLAIMED: true
+      BEST_SCORE: 19
+      BEST_ROMANCE_FLAGS:
+      - TRUST_AUTONOMY
+      REPLAY_COUNT: 1
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_HE:
+    CHAPTER_1:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_WU:
+    CHAPTER_1:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_WEI:
+    CHAPTER_1:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_SA:
+    CHAPTER_1:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_GUI:
+    CHAPTER_1:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_YANG:
+    CHAPTER_1:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_DA:
+    CHAPTER_1:
+      UNLOCKED: true
+      FIRST_CLEAR_DONE: true
+      CANON_ENDING_ID: ENDING_COOPERATIVE
+      FIRST_CLEAR_REWARD_CLAIMED: true
+      BEST_SCORE: 18
+      BEST_ROMANCE_FLAGS:
+      - ACCEPTED_WITHOUT_FIXING
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+  CORE_ZHANG:
+    CHAPTER_1:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_2:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_3:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_4:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+    CHAPTER_5:
+      UNLOCKED: false
+      FIRST_CLEAR_DONE: false
+      CANON_ENDING_ID: null
+      FIRST_CLEAR_REWARD_CLAIMED: false
+      BEST_SCORE: 0
+      BEST_ROMANCE_FLAGS: []
+      REPLAY_COUNT: 0
+COMBAT_STATE:
+  ROUND: null
+  PHASE_SLOT: null
+  PARTY: []
+  ENEMIES: []
+  ALL_PUBLIC_STATS: {}
+  STATUS_EFFECTS: []
+  ESCAPE_AVAILABLE: false
+  SOUL_RING_TARGET_IF_ANY: null
+  ENCOUNTER_ID: null
+  TURN_ORDER: []
+WORLD_STATE:
+  WORLD_TIME: Day 4 | 06:52
+  PLAYER_LOCATION: 栖霞城·学院附近街角
+  CURRENT_SCENE: Day 4 06:52，周大为第1篇《临时舞台》已首通并完成结算；其后温鸥第1篇完成一次非正史重放，仅刷新篇章最高分与重放记录。当前普通冒险态，无ACTIVE战斗、猎魂、现实活动或伙伴篇章事务。
+  NPC_STATE:
+    CORE_OU:
+      LOCATION: 栖霞高级魂师学院
+      PRESENT: true
+      HP: 668
+      SOUL_POWER: 260
+    CORE_DA:
+      LOCATION: null
+      PRESENT: false
+      HP: 664
+      SOUL_POWER: 122
+    OTHERS: 未触发具体场景；继续按静态世界规则的默认日程运行，不写入虚构位置。
+  WORLD_GEOGRAPHY: 读取11_世界与NPC.md；无动态地图改写
+  ACTIVE_HUNT_INSTANCE: null
+  CURRENT_ENCOUNTER: null
+  KILLED_SOUL_BEAST_LOG:
+  - INSTANCE_ID: BEAST_D1_001
+    SPECIES_ID: B_IRON_BOAR
+    NAME: 铁背山猪
+    YEARS: 346
+    MAX_HP: 848
+    MAX_SOUL_POWER: 177
+    ATK: 73
+    DEF: 52
+    SKILLS:
+    - NAME: 铁背冲撞
+      COST: 28
+      EFFECT: 155% ATK单体伤害
+    KILL_XP: 186
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 3银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D1_001
+  - INSTANCE_ID: BEAST_D1_002
+    SPECIES_ID: B_GALE_WOLF
+    NAME: 疾风魔狼
+    YEARS: 330
+    MAX_HP: 599
+    MAX_SOUL_POWER: 216
+    ATK: 80
+    DEF: 36
+    SKILLS:
+    - NAME: 疾风扑杀
+      COST: 30
+      EFFECT: 155% ATK单体伤害
+    KILL_XP: 205
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 3银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D1_002
+  - INSTANCE_ID: BEAST_D1_003
+    SPECIES_ID: B_IRON_BOAR
+    NAME: 铁背山猪
+    YEARS: 219
+    MAX_HP: 713
+    MAX_SOUL_POWER: 160
+    ATK: 64
+    DEF: 46
+    SKILLS:
+    - NAME: 铁背冲撞
+      COST: 28
+      EFFECT: 155% ATK单体伤害
+    KILL_XP: 129
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 2银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D1_003
+  - INSTANCE_ID: BEAST_D2_004
+    SPECIES_ID: B_RED_WOLF
+    NAME: 赤鬃狼
+    YEARS: 280
+    MAX_HP: 575
+    MAX_SOUL_POWER: 188
+    ATK: 79
+    DEF: 34
+    SKILLS:
+    - NAME: 赤鬃扑击
+      COST: 30
+      EFFECT: 155% ATK单体伤害
+    KILL_XP: 172
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 2银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_004
+  - INSTANCE_ID: BEAST_D2_005
+    SPECIES_ID: B_DAPPLE_CAT
+    NAME: 斑斓猫
+    YEARS: 190
+    MAX_HP: 407
+    MAX_SOUL_POWER: 146
+    ATK: 65
+    DEF: 26
+    SKILLS:
+    - NAME: 裂爪
+      COST: 18
+      EFFECT: 135% ATK单体伤害
+    KILL_XP: 92
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 1银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_005
+  - INSTANCE_ID: BEAST_D2_006
+    SPECIES_ID: B_RED_WOLF
+    NAME: 赤鬃狼
+    YEARS: 228
+    MAX_HP: 533
+    MAX_SOUL_POWER: 180
+    ATK: 75
+    DEF: 32
+    SKILLS:
+    - NAME: 赤鬃扑击
+      COST: 30
+      EFFECT: 155% ATK单体伤害
+    KILL_XP: 146
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 2银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_006
+  - INSTANCE_ID: BEAST_D2_007
+    SPECIES_ID: B_DAPPLE_CAT
+    NAME: 斑斓猫
+    YEARS: 77
+    MAX_HP: 311
+    MAX_SOUL_POWER: 127
+    ATK: 53
+    DEF: 21
+    SKILLS:
+    - NAME: 裂爪
+      COST: 18
+      EFFECT: 1.35×ATK单体伤害
+    KILL_XP: 52
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 1银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_007
+  - INSTANCE_ID: BEAST_D2_008
+    SPECIES_ID: B_FENG_BABOON
+    NAME: 风狒狒
+    YEARS: 278
+    MAX_HP: 561
+    MAX_SOUL_POWER: 168
+    ATK: 65
+    DEF: 35
+    SKILLS:
+    - NAME: 猛扑
+      COST: 18
+      EFFECT: 1.25×ATK单体伤害
+    - NAME: 风压吼
+      COST: 22
+      EFFECT: 0.75×ATK单体伤害；目标下一次攻击最终伤害-15%
+    KILL_XP: 132
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 2银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_008
+  - INSTANCE_ID: BEAST_D2_009
+    SPECIES_ID: RUNTIME_B_SPIKEBACK_GREEN_SNAKE
+    NAME: 棘背青蛇
+    YEARS: 364
+    MAX_HP: 648
+    MAX_SOUL_POWER: 184
+    ATK: 71
+    DEF: 39
+    SKILLS:
+    - NAME: 毒牙突袭
+      COST: 18
+      EFFECT: 96基础伤害；命中后中毒，每回合15基础伤害，持续2回合
+    - NAME: 棘尾横扫
+      COST: 24
+      EFFECT: 82基础伤害；范围攻击
+    KILL_XP: 161
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 3银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_009
+    LEGACY_RUNTIME_ANOMALY: 'YES'
+    LEGACY_RUNTIME_SOURCE_RELEASE: '2.8'
+    LEGACY_RUNTIME_POLICY: HISTORY_ONLY_NO_REGENERATION
+  - INSTANCE_ID: BEAST_D2_010
+    SPECIES_ID: B_GREEN_DEER
+    NAME: 青纹鹿
+    YEARS: 293
+    MAX_HP: 604
+    MAX_SOUL_POWER: 240
+    ATK: 58
+    DEF: 39
+    SKILLS:
+    - NAME: 青息
+      COST: 30
+      EFFECT: 恢复自身18%最大HP
+    KILL_XP: 154
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 2银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_010
+  - INSTANCE_ID: BEAST_D2_011
+    SPECIES_ID: RUNTIME_B_ROCKARMORED_TUSK_BOAR
+    NAME: 岩甲獠猪
+    YEARS: 341
+    MAX_HP: 692
+    MAX_SOUL_POWER: 176
+    ATK: 69
+    DEF: 55
+    SKILLS:
+    - NAME: 獠牙冲撞
+      COST: 20
+      EFFECT: 101基础伤害；单体攻击
+    - NAME: 岩甲护身
+      COST: 26
+      EFFECT: 自身DEF+24，持续2回合
+    KILL_XP: 168
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 3银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D2_011
+    LEGACY_RUNTIME_ANOMALY: 'YES'
+    LEGACY_RUNTIME_SOURCE_RELEASE: '2.8'
+    LEGACY_RUNTIME_POLICY: HISTORY_ONLY_NO_REGENERATION
+  - INSTANCE_ID: BEAST_D3_012
+    SPECIES_ID: B_SOFTBONE_RABBIT
+    NAME: 柔骨兔
+    YEARS: 203
+    MAX_HP: 433
+    MAX_SOUL_POWER: 176
+    ATK: 55
+    DEF: 28
+    SKILLS:
+    - NAME: 蹬击
+      COST: 16
+      EFFECT: 1.25×ATK单体伤害
+    KILL_XP: 109
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 2银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D3_012
+  - INSTANCE_ID: BEAST_D3_013
+    SPECIES_ID: B_FENG_BABOON
+    NAME: 风狒狒
+    YEARS: 220
+    MAX_HP: 514
+    MAX_SOUL_POWER: 160
+    ATK: 61
+    DEF: 33
+    SKILLS:
+    - NAME: 猛扑
+      COST: 18
+      EFFECT: 1.25×ATK单体伤害
+    - NAME: 风压吼
+      COST: 22
+      EFFECT: 0.75×ATK单体伤害；目标下一次攻击最终伤害-15%
+    KILL_XP: 110
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 2银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D3_013
+  - INSTANCE_ID: BEAST_D3_014
+    SPECIES_ID: B_FROST_FOX
+    NAME: 霜尾狐
+    YEARS: 321
+    MAX_HP: 540
+    MAX_SOUL_POWER: 235
+    ATK: 74
+    DEF: 35
+    SKILLS:
+    - NAME: 霜息
+      COST: 32
+      EFFECT: 1.10×ATK单体伤害；目标下一次攻击最终伤害-20%
+    KILL_XP: 192
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 3银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D3_014
+  - INSTANCE_ID: BEAST_D3_015
+    SPECIES_ID: RUNTIME_B_IRON_TUSK_BOAR
+    NAME: 铁甲獠猪
+    YEARS: 284
+    MAX_HP: 602
+    MAX_SOUL_POWER: 196
+    ATK: 69
+    DEF: 47
+    SKILLS:
+    - NAME: 獠牙冲撞
+      COST: 24
+      EFFECT: 145% ATK单体伤害
+    - NAME: 铁甲硬化
+      COST: 28
+      EFFECT: 自身DEF+25%，持续至下一次行动结束
+    KILL_XP: 170
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 3银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D3_015
+    LEGACY_RUNTIME_ANOMALY: 'YES'
+    LEGACY_RUNTIME_SOURCE_RELEASE: '2.12'
+    LEGACY_RUNTIME_POLICY: HISTORY_ONLY_NO_REGENERATION
+  - INSTANCE_ID: BEAST_D3_016
+    SPECIES_ID: B_IRON_BOAR
+    NAME: 铁背山猪
+    YEARS: 301
+    MAX_HP: 803
+    MAX_SOUL_POWER: 171
+    ATK: 70
+    DEF: 50
+    SKILLS:
+    - NAME: 铁背冲撞
+      COST: 28
+      EFFECT: 155% ATK单体伤害
+    KILL_XP: 165
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 3银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D3_016
+  - INSTANCE_ID: BEAST_D3_017
+    SPECIES_ID: B_FENG_BABOON
+    NAME: 风狒狒
+    YEARS: 61
+    MAX_HP: 352
+    MAX_SOUL_POWER: 131
+    ATK: 46
+    DEF: 25
+    SKILLS:
+    - NAME: 猛扑
+      COST: 18
+      EFFECT: 1.25×ATK单体伤害
+    - NAME: 风压吼
+      COST: 22
+      EFFECT: 0.75×ATK单体伤害；目标下一次攻击最终伤害-15%
+    KILL_XP: 49
+    LOCATION: 暮星猎魂森林·外圈
+    ALIVE: false
+    HUNT_PAYOUT: 1银魂币
+    HUNT_PAYOUT_APPLIED: 'YES'
+    ENCOUNTER_ID: ENC_D3_017
+  ENCOUNTER_LOG:
+  - ENCOUNTER_ID: ENC_D1_001
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 1 | 11:00
+    END_WORLD_TIME: Day 1 | 11:30
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D1_001
+  - ENCOUNTER_ID: ENC_D1_002
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 1 | 11:30
+    END_WORLD_TIME: Day 1 | 12:00
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D1_002
+  - ENCOUNTER_ID: ENC_D1_003
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 1 | 12:00
+    END_WORLD_TIME: Day 1 | 12:30
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D1_003
+  - ENCOUNTER_ID: ENC_D2_004
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 01:40
+    END_WORLD_TIME: Day 2 | 02:10
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_004
+  - ENCOUNTER_ID: ENC_D2_005
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 02:10
+    END_WORLD_TIME: Day 2 | 02:40
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_005
+  - ENCOUNTER_ID: ENC_D2_006
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 02:40
+    END_WORLD_TIME: Day 2 | 03:10
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_006
+  - ENCOUNTER_ID: ENC_D2_007
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 19:52
+    END_WORLD_TIME: Day 2 | 20:22
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_007
+  - ENCOUNTER_ID: ENC_D2_008
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 20:22
+    END_WORLD_TIME: Day 2 | 20:52
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_008
+  - ENCOUNTER_ID: ENC_D2_009
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 20:52
+    END_WORLD_TIME: Day 2 | 21:22
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_009
+    LEGACY_RUNTIME_ANOMALY: 'YES'
+    LEGACY_RUNTIME_SOURCE_RELEASE: '2.8'
+  - ENCOUNTER_ID: ENC_D2_010
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 21:22
+    END_WORLD_TIME: Day 2 | 21:52
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_010
+  - ENCOUNTER_ID: ENC_D2_011
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 2 | 21:52
+    END_WORLD_TIME: Day 2 | 22:22
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D2_011
+    LEGACY_RUNTIME_ANOMALY: 'YES'
+    LEGACY_RUNTIME_SOURCE_RELEASE: '2.8'
+  - ENCOUNTER_ID: ENC_D3_012
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 3 | 11:22
+    END_WORLD_TIME: Day 3 | 11:52
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D3_012
+  - ENCOUNTER_ID: ENC_D3_013
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 3 | 11:52
+    END_WORLD_TIME: Day 3 | 12:22
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D3_013
+  - ENCOUNTER_ID: ENC_D3_014
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 3 | 12:22
+    END_WORLD_TIME: Day 3 | 12:52
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D3_014
+  - ENCOUNTER_ID: ENC_D3_015
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 3 | 12:52
+    END_WORLD_TIME: Day 3 | 13:22
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D3_015
+    LEGACY_RUNTIME_ANOMALY: 'YES'
+    LEGACY_RUNTIME_SOURCE_RELEASE: '2.12'
+  - ENCOUNTER_ID: ENC_D3_016
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 3 | 13:22
+    END_WORLD_TIME: Day 3 | 13:52
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D3_016
+  - ENCOUNTER_ID: ENC_D3_017
+    ENCOUNTER_STATUS: RESOLVED
+    ENCOUNTER_RESULT: KILL_VICTORY
+    ENCOUNTER_TIME_APPLIED: 'YES'
+    START_WORLD_TIME: Day 3 | 13:52
+    END_WORLD_TIME: Day 3 | 14:22
+    SOUL_BEAST_INSTANCE_IDS:
+    - BEAST_D3_017
+  KNOWN_SOUL_BEASTS:
+  - B_IRON_BOAR
+  - B_GALE_WOLF
+  - B_RED_WOLF
+  - B_DAPPLE_CAT
+  - B_FENG_BABOON
+  - B_GREEN_DEER
+  - B_SOFTBONE_RABBIT
+  - B_FROST_FOX
+  WORLD_FACTS:
+  - 开局玩家指南已展示。
+  - 霜翎弓已选定为林昭宁武魂。
+  - 温鸥为ACTIVE锚定同行者。
+  - 三次暮星猎魂森林外圈遭遇均已结束并各结算一次30分钟。
+  - 三只魂兽击杀EXP与猎获收益均已结算且不可重复领取。
+  - Day 1 14:30后在小院完成一次已提交的游戏内睡眠恢复，当前林昭宁与温鸥均满HP/魂力。
+  - Day 1 23:00与温鸥在小院吃完两份肉蛋面，支付3银。
+  - Day 1 23:00至23:30与温鸥进行30分钟游戏内共同修炼；普通修炼不发EXP。
+  - Day 1 23:40后与温鸥夜间外出，并于Day 2 01:40抵达暮星猎魂森林外圈。
+  - Day 2新增三次暮星猎魂森林外圈遭遇均已结束并各结算一次30分钟；新增三只魂兽击杀EXP与猎获收益均已结算且不可重复领取。
+  - Day 2 05:10返回小院，随后安全据点休息4小时至09:10。
+  - Day 2 10:10完成两份牛肉汤面早餐并支付5银；林昭宁恢复至满HP，餐饮恢复时间记录为10:10。
+  - Day 2 10:40至12:00与温鸥进行游戏内共同修炼；不发EXP。
+  - Day 2 13:00完成烧肉饭与蜜汁烤鸭午餐并支付1金2银；因4小时餐饮恢复限制未产生额外恢复。
+  - Day 2 13:40在学院训练场与周大为正式认识；双方约定以后有合适机会可一起猎魂，伙伴魂环候选由本人参与选择。
+  - Day 2 13:40在学院训练场与周大为完成一次一对一对练；双方主动结束，未产生EXP、战利品或正式魂兽遭遇结算。对练结束时林昭宁HP502/560、魂力178/250；周大为HP248/640、魂力224/290。
+  - 对练后与温鸥进行了短暂配合练习；普通游戏内训练本身不发EXP，且本段未指定可结算时长。
+  - 周大为确认以后需要魂环时愿意与林昭宁、温鸥一起认真挑选合适魂兽与魂环候选。
+  - 现实睡眠2026-08-28 19:37至20:19曾按当时运行规则结算42分钟并使游戏世界时间推进42分钟至Day 2 14:22；其后2.6规则已将现实睡眠与游戏世界永久解绑，既成世界时间事实不回滚。
+  - Day 2 15:22在栖霞小馆与温鸥、周大为吃完三份牛肉汤面和一份蜜汁烤鸭；支付1金5银5铜；本餐按C档恢复结算。
+  - Day 2 15:52返回栖霞城东区小院。
+  - Day 2 15:52至17:52在安全据点休息2小时；林昭宁魂力回满，周大为恢复至HP528/640、魂力290/290。
+  - Day 2 17:52与温鸥、周大为出发前往暮星猎魂森林，以积累实战经验与磨合配合为目的，不指定魂环目标。
+  - Day 2 19:52抵达暮星猎魂森林外圈并遭遇77年斑斓猫；遭遇已生成冻结，战斗尚未执行第一行动。
+  - Day 2 20:22击杀77年斑斓猫；+52 EXP；猎获收益1银；林昭宁由Lv24升至Lv25，九名核心伙伴按同步规则追赶至Lv25；遭遇+30分钟。
+  - Day 2 20:52击杀278年风狒狒；+132 EXP；猎获收益2银；遭遇+30分钟。
+  - Day 2 21:22击杀364年棘背青蛇；+161 EXP；猎获收益3银；遭遇+30分钟。
+  - Day 2 21:52击杀293年青纹鹿；+154 EXP；猎获收益2银；遭遇+30分钟。
+  - Day 2 22:22击杀341年岩甲獠猪；+168 EXP；猎获收益3银；遭遇+30分钟；当晚猎魂结束。
+  - Day 2 22:22结束当晚猎魂后与温鸥、周大为返程；暮星猎魂森林至栖霞城固定单程2小时，于Day 3 00:22返回栖霞城东区小院。
+  - Day 3 00:22至08:22在小院完成一次游戏内正常睡眠；因未另指定时长，按2.9规则默认8小时；林昭宁、温鸥、周大为HP与魂力回满。
+  - Day 3 09:22在栖霞小馆与温鸥、周大为吃完三份牛肉汤面；支付7银5铜；三人当时均为满状态。
+  - Day 3 11:22抵达暮星猎魂森林外圈，开始新一轮普通刷怪与猎获收入狩猎。
+  - Day 3 11:22至14:22与温鸥、周大为在暮星猎魂森林外圈完成6次遭遇；全部遭遇均已RESOLVED且各只应用一次30分钟遭遇时间，击杀EXP与猎获收益均已结算且不可重复领取。
+  - Day 3 13:22击杀的284年铁甲獠猪为2.12运行错误产生且已结束结算的历史异常实例；保留既成EXP、猎获收益与时间事实并标记LEGACY_RUNTIME_ANOMALY，仅用于恢复/防重复，永不进入正式候选或再次生成。
+  - Day 3 13:52击杀301年铁背山猪后林昭宁升至Lv26；九名核心伙伴按同步规则追赶至Lv26并更新对应基础数值，不因升级自动恢复已损失HP/魂力。
+  - Day 3 14:22结束本轮猎魂并返程；Day 3 16:22返回栖霞城，周大为随后与林昭宁、温鸥分开，温鸥继续陪同林昭宁。
+  - Day 3 16:42至18:42在栖霞城东区小院完成2小时安全据点休息；林昭宁恢复至HP290/600、魂力122/272，温鸥恢复至HP668/668、魂力95/260。
+  - Day 3 19:42与温鸥在栖霞小馆吃完两份葱油拌面；支付2银4铜，A档恢复已结算。当前林昭宁HP330/600、魂力137/272，温鸥HP668/668、魂力110/260。
+  - Day 4 06:22完成温鸥第1篇《两份葱油拌面》首次通关；两人约定以后谁先结束修炼谁去找对方，有临时的事直接说、不让对方白等；首通奖励2金已领取。
+  - Day 4 06:52完成周大为第1篇《临时舞台》首次通关；结局为合作收束；首通奖励2金已领取。
+  RECENT_EVENT_LOG:
+  - WORLD_TIME: Day 1 | 23:30
+    EVENT: 与温鸥完成30分钟游戏内共同修炼；EXP不变。
+  - WORLD_TIME: Day 1 | 23:40
+    EVENT: 与温鸥开始夜间外出，随后决定前往暮星猎魂森林。
+  - WORLD_TIME: Day 2 | 01:40
+    EVENT: 与温鸥抵达暮星猎魂森林外圈。
+  - WORLD_TIME: Day 2 | 02:10
+    EVENT: 击杀280年赤鬃狼；+172 EXP；猎获收益2银；遭遇+30分钟。
+  - WORLD_TIME: Day 2 | 02:40
+    EVENT: 击杀190年斑斓猫；+92 EXP；猎获收益1银；遭遇+30分钟。
+  - WORLD_TIME: Day 2 | 03:10
+    EVENT: 击杀228年赤鬃狼；+146 EXP；猎获收益2银；遭遇+30分钟。
+  - WORLD_TIME: Day 2 | 05:10
+    EVENT: 与温鸥安全返回栖霞城东区小院。
+  - WORLD_TIME: Day 2 | 09:10
+    EVENT: 在安全据点连续休息4小时；林昭宁HP恢复至488、魂力回满；温鸥恢复满状态。
+  - WORLD_TIME: Day 2 | 10:10
+    EVENT: 在栖霞小馆吃完两份牛肉汤面；支付5银；林昭宁HP恢复至满。
+  - WORLD_TIME: Day 2 | 12:00
+    EVENT: 与温鸥在小院共同修炼至中午；游戏内普通修炼EXP不变。
+  - WORLD_TIME: Day 2 | 13:00
+    EVENT: 在栖霞小馆吃完烧肉饭与蜜汁烤鸭；支付1金2银；餐饮恢复受4小时限制未触发。
+  - WORLD_TIME: Day 2 | 13:40
+    EVENT: 与温鸥抵达栖霞高级魂师学院训练场；周大为在场。
+  - WORLD_TIME: Day 2 | 13:40
+    EVENT: 与周大为正式认识；双方约定以后有合适机会可以一起猎魂。
+  - WORLD_TIME: Day 2 | 13:40
+    EVENT: 与周大为提出一对一对练，但在正式开打前因规则检查中止；未进入战斗结算，时间与EXP不变。
+  - WORLD_TIME: Day 2 | 13:40
+    EVENT: 与周大为完成一对一对练；双方主动结束。对练不发EXP/战利品；结束时林昭宁HP502、魂力178，周大为HP248、魂力224。
+  - WORLD_TIME: Day 2 | 13:40
+    EVENT: 对练后与温鸥进行了短暂配合训练；未指定可结算时长，游戏内普通训练EXP不变。
+  - WORLD_TIME: Day 2 | 14:22
+    EVENT: 此前现实短睡42分钟按当时规则已使游戏世界时间同步推进42分钟；2.6起现实睡眠不再同步游戏世界。
+  - WORLD_TIME: Day 2 | 15:22
+    EVENT: 与温鸥、周大为在栖霞小馆吃完三份牛肉汤面和一份蜜汁烤鸭；支付1金5银5铜；按C档恢复。
+  - WORLD_TIME: Day 2 | 15:52
+    EVENT: 与温鸥、周大为返回栖霞城东区小院。
+  - WORLD_TIME: Day 2 | 17:52
+    EVENT: 在安全据点休息2小时完成；林昭宁魂力回满，周大为恢复至HP528/640、魂力290/290。
+  - WORLD_TIME: Day 2 | 19:52
+    EVENT: 与温鸥、周大为抵达暮星猎魂森林外圈，开始以实战经验与配合磨合为目的的猎魂。
+  - WORLD_TIME: Day 2 | 19:52
+    EVENT: 遭遇77年斑斓猫；遭遇数据冻结，当前为第1轮林昭宁行动前。
+  - WORLD_TIME: Day 2 | 20:22
+    EVENT: 击杀77年斑斓猫；+52 EXP；猎获收益1银；林昭宁升至Lv25，核心伙伴同步至Lv25；遭遇+30分钟。
+  - WORLD_TIME: Day 2 | 20:52
+    EVENT: 击杀278年风狒狒；+132 EXP；猎获收益2银；遭遇+30分钟。
+  - WORLD_TIME: Day 2 | 21:22
+    EVENT: 击杀364年棘背青蛇；+161 EXP；猎获收益3银；遭遇+30分钟。
+  - WORLD_TIME: Day 2 | 21:52
+    EVENT: 击杀293年青纹鹿；+154 EXP；猎获收益2银；遭遇+30分钟。
+  - WORLD_TIME: Day 2 | 22:22
+    EVENT: 击杀341年岩甲獠猪；+168 EXP；猎获收益3银；遭遇+30分钟；随后结束当晚猎魂。
+  - WORLD_TIME: Day 3 | 00:22
+    EVENT: 与温鸥、周大为从暮星猎魂森林返抵栖霞城东区小院；返程固定2小时已结算。
+  - WORLD_TIME: Day 3 | 08:22
+    EVENT: 在小院完成8小时游戏内正常睡眠；林昭宁、温鸥、周大为HP/魂力恢复至满。
+  - WORLD_TIME: Day 3 | 09:22
+    EVENT: 与温鸥、周大为在栖霞小馆吃完三份牛肉汤面；支付7银5铜。
+  - WORLD_TIME: Day 3 | 11:22
+    EVENT: 与温鸥、周大为抵达暮星猎魂森林外圈，开始普通刷怪与猎获收入狩猎。
+  - WORLD_TIME: Day 3 | 11:52
+    EVENT: 击杀203年柔骨兔；+109 EXP；猎获收益2银；遭遇+30分钟。
+  - WORLD_TIME: Day 3 | 12:22
+    EVENT: 击杀220年风狒狒；+110 EXP；猎获收益2银；遭遇+30分钟。
+  - WORLD_TIME: Day 3 | 12:52
+    EVENT: 击杀321年霜尾狐；+192 EXP；猎获收益3银；遭遇+30分钟。
+  - WORLD_TIME: Day 3 | 13:22
+    EVENT: 击杀284年铁甲獠猪；+170 EXP；猎获收益3银；遭遇+30分钟。该已结束实例后续迁移标记为LEGACY_RUNTIME_ANOMALY。
+  - WORLD_TIME: Day 3 | 13:52
+    EVENT: 击杀301年铁背山猪；+165 EXP；林昭宁升至Lv26，核心伙伴同步至Lv26；猎获收益3银；遭遇+30分钟。
+  - WORLD_TIME: Day 3 | 14:22
+    EVENT: 击杀61年风狒狒；+49 EXP；猎获收益1银；遭遇+30分钟；随后结束本轮猎魂。
+  - WORLD_TIME: Day 3 | 16:22
+    EVENT: 与温鸥、周大为从暮星猎魂森林返抵栖霞城；固定返程2小时已结算，周大为随后与两人分开。
+  - WORLD_TIME: Day 3 | 16:42
+    EVENT: 与温鸥回到栖霞城东区小院。
+  - WORLD_TIME: Day 3 | 18:42
+    EVENT: 在小院完成2小时安全据点休息；林昭宁恢复至HP290/600、魂力122/272；温鸥恢复至HP668/668、魂力95/260。
+  - WORLD_TIME: Day 3 | 19:12
+    EVENT: 与温鸥抵达栖霞小馆并点两份葱油拌面。
+  - WORLD_TIME: Day 3 | 19:42
+    EVENT: 与温鸥吃完两份葱油拌面；支付2银4铜；A档餐饮恢复已结算。
+  - WORLD_TIME: Day 3 | 20:12
+    EVENT: 与温鸥从栖霞小馆返回栖霞城东区小院。
+  - WORLD_TIME: Day 4 | 04:12
+    EVENT: 在小院完成8小时游戏内正常睡眠；林昭宁与温鸥HP/魂力恢复至满。
+  - WORLD_TIME: Day 4 | 05:12
+    EVENT: 与温鸥在栖霞小馆吃完两份阳春面；支付16铜；两人原本均为满状态。
+  - WORLD_TIME: Day 4 | 05:52
+    EVENT: 与温鸥抵达栖霞高级魂师学院训练场，准备进行配合训练；训练尚未开始正式结算。
+  - WORLD_TIME: Day 4 | 06:22
+    EVENT: 完成温鸥第1篇《两份葱油拌面》首通；两人把“下次一起吃”落成了具体约定；首通奖励+2金；篇章时间推进30分钟。
+  - WORLD_TIME: Day 4 | 06:52
+    EVENT: 完成周大为第1篇《临时舞台》首通；结局为合作收束；首通奖励+2金；篇章时间推进30分钟。
+REAL_ACTIVITY_INTERVAL_LEDGER:
+- ACTIVITY_ID: RA_SLEEP_20260828_1937_2019_LIVE
+  TYPE: SLEEP
+  SOURCE: LIVE
+  START_AT_REAL_TIMESTAMP_WITH_OFFSET: '2026-08-28T19:37:00+02:00'
+  END_AT_REAL_TIMESTAMP_WITH_OFFSET: '2026-08-28T20:19:51+02:00'
+  ACTUAL_FULL_MINUTES: 42
+  CREDITED_MINUTES_BY_LOCAL_DATE:
+    '2026-08-28': 42
+  COMMITTED_TRANSACTION_ID: TX046_REAL_SLEEP_LIVE_20260828_2019
+- ACTIVITY_ID: RA_SLEEP_20260829_0130_0803_RETRO
+  TYPE: SLEEP
+  SOURCE: RETRO
+  START_AT_REAL_TIMESTAMP_WITH_OFFSET: '2026-08-29T01:30:00+02:00'
+  END_AT_REAL_TIMESTAMP_WITH_OFFSET: '2026-08-29T08:03:00+02:00'
+  ACTUAL_FULL_MINUTES: 393
+  CREDITED_MINUTES_BY_LOCAL_DATE:
+    '2026-08-29': 393
+  COMMITTED_TRANSACTION_ID: TX047_REAL_SLEEP_RETRO_20260829_0803
