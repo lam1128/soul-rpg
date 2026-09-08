@@ -4,9 +4,9 @@
 >
 > **Git 源码治理入口：** `governance/project.md` + `runtime/registry.json`。
 >
-> **兼容运行包入口：** 本文件 + `魂师修炼RPG_manifest.json`。
+> **兼容运行包入口：** 本文件 + 包内根目录 `魂师修炼RPG_manifest.json`。
 >
-> **关键约定：** 本项目旧文档中的 `manifest` 是“当前机器注册表”的语义简称。Git 源码中的唯一机器主源是 `runtime/registry.json`；兼容运行包中的 `魂师修炼RPG_manifest.json` 是由该 registry 生成的派生视图。
+> **关键约定：** 本项目旧文档中的 `manifest` 是“当前机器注册表”的语义简称。Git 源码中的唯一机器主源是 `runtime/registry.json`；兼容运行包中的 `魂师修炼RPG_manifest.json` 是导出时由该 registry 与当前源码生成的派生视图，Git source tree 不保存它的长期副本。
 >
 > **不负责：** 不定义战斗、世界、剧情、人物、经济、UI、状态 schema 或某次冒险的当前具体值。
 
@@ -18,7 +18,7 @@ Git 源码维护时：
 
 兼容运行包启动时：
 
-`本索引 → 兼容 manifest 启动切片 → startup router → control pre-router → 当前候选 recognition owner`
+`本索引 → 包内兼容 manifest 启动切片 → startup router → control pre-router → 当前候选 recognition owner`
 
 每条新的用户主动消息都重新经过 control pre-router；不得靠聊天记忆或上轮 route 永久绑定当前事务。控制事务未命中时，才进入普通游戏启动与 `interaction_route_activation`。
 
@@ -59,9 +59,9 @@ Git 源码维护时：
 
 ## 6. 墓碑与仓库卫生
 
-Git `main` 不保留 `_old / _backup / final_final`、已消费 patch/handoff、临时测试输出、构建产物、无消费者旧接口或重复业务主源。历史由 Git commit 保存，不需要把施工史继续留在当前 tree。
+Git `main` 不保留 `_old / _backup / final_final`、已消费 patch/handoff、临时测试输出、构建产物、无消费者旧接口、重复业务主源或可从当前源码确定性再生的包级 manifest。历史由 Git commit 保存，不需要把施工史或生成视图继续留在当前 tree。
 
-兼容运行包是派生视图，只包含 `compatibility/runtime-members.json` 登记的正式 runtime 成员；不得把 `.github/`、仓库 QA 脚本、导出脚本或其它 source-only 工具塞入运行包。
+兼容运行包是派生视图，只包含 `compatibility/runtime-members.json` 登记的正式 runtime 成员；不得把 `.github/`、仓库 QA 脚本、导出脚本或其它 source-only 工具塞入运行包。包内 `魂师修炼RPG_manifest.json` 由导出器现场生成并参与重开审计。
 
 ## 7. 文件维护与 QA
 
@@ -81,7 +81,7 @@ Git `main` 不保留 `_old / _backup / final_final`、已消费 patch/handoff、
 ## 9. 当前结构约束
 
 - Git 源码机器主源：`runtime/registry.json`。
-- 兼容包机器派生视图：`魂师修炼RPG_manifest.json`。
+- 兼容包机器派生视图：包内根目录 `魂师修炼RPG_manifest.json`，导出时生成，不提交为长期 source 文件。
 - startup fast entry 与 control pre-router 仍是运行入口；复杂项目维护和存档事务直接 dispatch 到外部 Skill。
 - 当前稳定状态只认 registry 登记的 `state/current/SOUL_STATE_V1.yaml`；外部 checkpoint 只从 `external_sources.checkpoint_import` 进入显式导入/恢复流程。
 - README 与专用项目入口协议不复制业务实现。
