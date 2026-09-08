@@ -1,0 +1,33 @@
+name: Soul RPG QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install QA dependency
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: Run Git-first QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python qa/validate_registry.py --project .
+          python qa/check_route_conflicts.py --project .
+          python qa/check_state_invariants.py --project .
+          python qa/check_git_first_architecture.py --project .
+          python qa/check_derived_export.py --project .
+          mkdir -p /tmp/soul-rpg-dist
+          python scripts/export_runtime_zip.py --project . --out /tmp/soul-rpg-dist/魂师修炼RPG_v3.11.zip
+          python qa/audit_runtime_package.py /tmp/soul-rpg-dist/魂师修炼RPG_v3.11.zip
