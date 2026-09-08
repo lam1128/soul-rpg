@@ -1,42 +1,69 @@
 # 魂师修炼RPG
 
-Git-first source for the dedicated 魂师修炼RPG project.
+Git-first 的《魂师修炼RPG》项目源码仓库。当前规则、路由、治理与正式游戏状态都以 Git `main` HEAD 为权威；聊天记录、旧 ZIP、旧运行包和历史副本都不是当前运行主源。
 
-## Authority model
+## 核心入口
 
-- `main` HEAD is the current project source authority.
-- `governance/project.md` owns Git-first governance.
-- `runtime/registry.json` owns runtime routes, startup, access policy, external Skill dispatch, stable owner discovery, and compatibility checkpoint import registration.
-- Stable domain owner files own gameplay/business truth.
-- `12_状态存档.md` owns the state schema and lifecycle protocol; `state/current/SOUL_STATE_V1.yaml` is the canonical persisted adventure state in Git.
-- `qa/` is the repository-owned regression suite.
-- The compatibility runtime ZIP and its package-root `魂师修炼RPG_manifest.json` are generated/derived compatibility views, not source authority. The generated manifest embeds the exact source Git commit SHA; `MAJOR.MINOR` remains only a compatibility label.
+| 职责 | 唯一入口 |
+|---|---|
+| 项目治理 | `governance/project.md` |
+| 机器运行注册表 | `runtime/registry.json` |
+| 当前正式游戏状态 | `state/current/SOUL_STATE_V1.yaml` |
+| 状态 schema / 生命周期 | `12_状态存档.md` |
+| 项目验收规则 | `QA_项目验收规则.md` |
+| 自动回归 | `qa/` + `.github/workflows/qa.yml` |
+| 兼容运行包成员 | `compatibility/runtime-members.json` |
+| 兼容运行包导出 | `scripts/export_runtime_zip.py` |
 
-## Runtime entry
+业务规则继续由各稳定 owner 文件独占。registry 只负责发现 owner、route、control intent、访问策略、Skill 接口与状态生命周期，不复制战斗、经济、人物、篇章或 UI 的业务常量。
 
-Source checkout:
+## 运行顺序
 
-`governance/project.md → runtime/registry.json → registered startup/control dispatcher`
+Git 源码模式：
 
-Compatibility runtime export:
+```text
+governance/project.md
+→ runtime/registry.json
+→ startup router / control pre-router
+→ 当前命中的 route 或 Skill
+```
 
-`魂师修炼RPG_文档索引与版本状态.md → generated package-root 魂师修炼RPG_manifest.json`
+普通“读档 / 继续 / 恢复游戏”直接读取 canonical Git state；不会自动寻找或上传旧 checkpoint。
 
-The compatibility manifest mirrors the source registry and additionally carries the exact source Git commit, export membership, bytes and SHA-256 data.
+## 存档模型
 
-## State and checkpoint compatibility
+日常游戏进度在合法行动结算后通过 registry 登记的 `STATE_COMMIT` 写入：
 
-Current gameplay state is persisted directly in `state/current/SOUL_STATE_V1.yaml` and versioned by Git `main` history. Ordinary gameplay changes are committed through the registered `STATE_COMMIT` service as part of normal runtime persistence.
+```text
+state/current/SOUL_STATE_V1.yaml
+```
 
-A plain `存档 / 保存进度` is therefore only a confirmation that the current Git state is already persisted; it does not generate a ZIP and does not increment compatibility `STATE_REV`. `读档 / 继续 / 恢复游戏` reads the canonical Git current state directly.
+因此：
 
-Existing `SOUL_STATE_V1` ZIPs are immutable compatibility checkpoints. Only an explicit external request such as `导出存档 / 导出备份 / 导出 ZIP` invokes `SAVE_EXPORT`; only an explicit `导入旧存档 / 恢复某个外部 ZIP` invokes `LOAD_SAVE`. Ordinary gameplay never requires uploading or regenerating a checkpoint ZIP.
+- `存档 / 保存进度`：只确认当前 Git state 已持久化，不生成 ZIP，不增加兼容 `STATE_REV`。
+- `读档 / 继续 / 恢复游戏`：直接从 Git current state 恢复。
+- `导出存档 / 导出备份 / 导出 ZIP`：只有明确要求外部便携文件时才进入兼容 `SAVE_EXPORT`。
+- `导入旧存档 / 恢复某个外部 ZIP`：只有明确点名外部 checkpoint 时才进入 `LOAD_SAVE`。
 
-## QA
+旧 `SOUL_STATE_V1` ZIP 可以作为兼容历史备份存在于 Git 之外，但不会参与普通运行，也不需要上传到项目源。
 
-Run:
+## 兼容运行包
+
+兼容 runtime ZIP 是从当前已提交 Git source 现场生成的派生视图，不提交回仓库。包内 `魂师修炼RPG_manifest.json` 会记录：
+
+- 当前 registry 镜像；
+- 正式 runtime 成员；
+- 每个成员的 bytes / SHA-256；
+- 生成该包的精确 Git commit SHA。
+
+兼容 `MAJOR.MINOR` 只是包标签，真正源码身份始终是 Git commit SHA。
+
+## 全局 QA
+
+本地完整检查：
 
 ```bash
+python3 qa/check_repository_hygiene.py --project .
 python3 qa/validate_registry.py --project .
 python3 qa/check_route_conflicts.py --project .
 python3 qa/check_content_contracts.py
@@ -45,9 +72,14 @@ python3 qa/check_git_first_architecture.py --project .
 python3 qa/check_derived_export.py --project .
 ```
 
-To build a compatibility runtime package:
+仓库卫生检查会阻止 ZIP、backup、patch、build/dist、临时缓存、持久化兼容 manifest，以及写死的兼容包版本文件名重新进入 source tree。
+
+如需显式生成并审计兼容运行包：
 
 ```bash
-python3 scripts/export_runtime_zip.py --project . --out dist/魂师修炼RPG_v3.11.zip
-python3 qa/audit_runtime_package.py dist/魂师修炼RPG_v3.11.zip
+RELEASE="$(python3 -c "import json; print(json.load(open('runtime/registry.json', encoding='utf-8'))['release'])")"
+python3 scripts/export_runtime_zip.py --project . --out-dir dist
+python3 qa/audit_runtime_package.py "dist/魂师修炼RPG_v${RELEASE}.zip"
 ```
+
+生成目录已被 `.gitignore` 排除；兼容包只用于明确的导出、审计或无 Git checkout 的 fallback 场景。
