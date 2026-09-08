@@ -192,6 +192,13 @@
           "sections": [
             "当前PHASE对应章节"
           ]
+        },
+        {
+          "file": "UI_统一规范_日常恢复与菜单.md",
+          "sections": [
+            "§7 读档 / 继续游戏恢复卡"
+          ],
+          "condition": "render_resume_or_continue_card"
         }
       ],
       "activation": "only_when_no_control_intent_confirmed",
@@ -253,6 +260,12 @@
           "sections": [
             "§1新游戏初始资产"
           ]
+        },
+        {
+          "file": "UI_统一规范_日常恢复与菜单.md",
+          "sections": [
+            "§15 角色创建 UI"
+          ]
         }
       ],
       "state_access": "RUNTIME_MUTATION",
@@ -291,6 +304,12 @@
           "dynamic_source": "runtime_working_state",
           "sections": [
             "本route实际需要的当前动态字段"
+          ]
+        },
+        {
+          "file": "UI_统一规范_日常恢复与菜单.md",
+          "sections": [
+            "§13 现实活动 UI"
           ]
         }
       ],
@@ -432,10 +451,18 @@
           ]
         },
         {
+          "file": "UI_统一规范_日常恢复与菜单.md",
+          "sections": [
+            "§14 猎魂导航 UI"
+          ],
+          "condition": "before_active_soul_beast_encounter"
+        },
+        {
           "file": "UI_统一规范_魂兽遭遇.md",
           "sections": [
             "遭遇输出"
-          ]
+          ],
+          "condition": "active_soul_beast_encounter"
         },
         {
           "file": "01_人物性格.md",
@@ -508,6 +535,12 @@
           "sections": [
             "§6",
             "§7"
+          ]
+        },
+        {
+          "file": "UI_统一规范_日常恢复与菜单.md",
+          "sections": [
+            "§12 伙伴篇章运行 UI"
           ]
         },
         {
@@ -731,7 +764,7 @@
           "sections": [
             "请求对应的玩家可见动态字段"
           ],
-          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY_main_page",
+          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY",
           "fallback_state_owner": "state_model.current_state_owner"
         },
         {
@@ -739,14 +772,19 @@
           "sections": [
             "请求字段对应schema/玩家安全边界"
           ],
-          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY_main_page"
+          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY"
         },
         {
           "file": "UI_统一规范_日常恢复与菜单.md",
           "sections": [
-            "§5 游戏主页面｜只读导航"
+            "§5 游戏主页面｜只读导航",
+            "§6 CG大厅｜只读收藏",
+            "§8 玩家状态 / 人物卡",
+            "§9 伙伴列表",
+            "§10 伙伴详情",
+            "§11 伙伴篇章导航"
           ],
-          "condition": "intent_is_HELP_READONLY_and_request_is_main_page"
+          "condition": "readonly_game_ui_request"
         },
         {
           "file": "11_世界与NPC.md",
@@ -761,16 +799,24 @@
         {
           "file": "DM_ONLY_S00_九名核心伙伴.md",
           "sections": [
-            "仅当查看伙伴机械卡：当前伙伴公开身份、已拥有魂环/技能；禁止读取未来候选路线"
+            "仅当前请求涉及的伙伴公开身份、已拥有魂环/技能与机械卡；禁止读取未来候选路线"
           ],
-          "condition": "intent_is_STATUS_READONLY_and_request_requires_companion_static_card"
+          "condition": "readonly_request_requires_companion_public_card_or_list_or_detail"
         },
         {
           "file": "DM_ONLY_C00_伙伴篇章库.md",
           "sections": [
-            "仅当查看/导航篇章：当前已解锁章节标题、玩家可见前置摘要与可公开的下一解锁条件；禁止读取隐藏分值、真相、结局算法与未来节点"
+            "当前请求涉及的§0公开CG/篇章规则与§1A公开标题、前置、解锁信息；禁止读取隐藏选择答案、固定真相与未来节点"
           ],
-          "condition": "intent_is_STATUS_READONLY_and_request_requires_companion_episode_catalog_or_HELP_READONLY_main_page_or_episode_navigation_help"
+          "condition": "readonly_request_requires_episode_navigation_or_cg_gallery_or_main_page_episode_summary"
+        },
+        {
+          "lookup": "manifest.companion_episode_files[CHAPTER_ID]",
+          "sections": [
+            "仅基础CG画面与高好感CG画面"
+          ],
+          "condition": "single_companion_cg_page_requires_unlocked_descriptions",
+          "hard_limit": "only_requested_companion_chapters; at_most_five_chapter_files; never_scan_all_45"
         }
       ],
       "state_access": "READ_CONSUMER",
