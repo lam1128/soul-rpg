@@ -23,12 +23,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python qa/check_repository_hygiene.py --project .
           python qa/validate_registry.py --project .
           python qa/check_route_conflicts.py --project .
           python qa/check_content_contracts.py
           python qa/check_state_invariants.py --project .
           python qa/check_git_first_architecture.py --project .
           python qa/check_derived_export.py --project .
+
+          release="$(python -c "import json; print(json.load(open('runtime/registry.json', encoding='utf-8'))['release'])")"
           mkdir -p /tmp/soul-rpg-dist
-          python scripts/export_runtime_zip.py --project . --out /tmp/soul-rpg-dist/魂师修炼RPG_v3.11.zip
-          python qa/audit_runtime_package.py /tmp/soul-rpg-dist/魂师修炼RPG_v3.11.zip
+          python scripts/export_runtime_zip.py --project . --out-dir /tmp/soul-rpg-dist
+          python qa/audit_runtime_package.py "/tmp/soul-rpg-dist/魂师修炼RPG_v${release}.zip"
