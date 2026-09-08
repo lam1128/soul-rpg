@@ -1,6 +1,35 @@
+# OS / editor noise
 .DS_Store
+Thumbs.db
+*~
+*.tmp
+*.swp
+
+# Python / local tooling
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.coverage
+htmlcov/
+
+# Generated / disposable project artifacts
 dist/
+build/
+tmp/
+temp/
+backup/
+backups/
 *.zip
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.patch
+
+# Compatibility manifest is generated only inside exported runtime packages.
 /魂师修炼RPG_manifest.json
