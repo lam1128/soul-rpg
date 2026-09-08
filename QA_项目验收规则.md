@@ -22,7 +22,7 @@
 10. 选择型内容不得重复询问同一关系问题；后续节点应消费前文结果。
 11. 每个伙伴单章必须显式登记 `基础CG画面` 与 `高好感CG画面`，二者都为可观察场面且不能被局部分流意外删除；不得继续依赖单一旧CG锚点由运行时猜第二张。
 12. 若修改 CG 大厅，检查入口、只读边界、未解锁隐藏策略与既有 UI 约束同步。
-13. 所有会重复出现的游戏 UI 必须登记在通用 UI owner 或魂兽遭遇 UI owner 中；不得长期保留未登记的临时状态卡、伙伴卡、篇章卡、读档卡、现实活动卡、猎魂卡或角色创建卡。
+13. 所有会重复出现的游戏 UI 必须登记在通用 UI owner 或魂兽遭遇 UI owner 中；不得长期保留未登记的临时状态卡、伙伴卡、篇章卡、读档卡、存档确认卡、现实活动卡、猎魂卡或角色创建卡。
 14. 同一 UI 类型的标题、字段顺序、分组和底部导航应稳定；动态值和条件行可由领域 owner 注入/省略，但不得每轮重新设计结构。
 15. CG 收藏文案只描述直接可见的构图、动作、视线、表情、物件、光线和互动，不得加入关系总结、意义解释、剧情总结或抒情收尾。
 16. 普通自由对白/连续叙事不得被 UI 模板反向限制；固定模板只覆盖菜单、导航、选择卡、状态卡和结果卡等重复界面。
@@ -36,6 +36,9 @@
 24. 每个CG收藏槽必须能回溯到唯一 `CHAPTER_ID` 的单章显式CG字段；CG大厅/UI不得替换成同章其他场面、补造未发生的关键动作/物件/身体接触，也不得提供脱离篇章记录的独立解锁路径。
 25. 若某章已具备CG解锁状态但单章缺少足够明确、可观察的对应CG字段，增量QA应判为内容缺口并要求修复单章 owner；不得允许显示层临场创作一个替代画面来“补齐”。
 26. 关系门之后的后续章不能只写一句“情侣版/伙伴版”声明；必须在单章内登记可执行的具体分流契约（或语义等价结构），说明哪些距离、主动动作、共同习惯、称呼/身体接触属于情侣版，哪些亲密在伙伴版仍然成立，并逐项兼容人物性格 owner。
+27. 普通“存档 / 保存进度”必须是 Git current state 的只读确认，不得触发 `SAVE_EXPORT`、生成 ZIP 或增加 `STATE_REV`；只有明确外部导出/备份/checkpoint/ZIP 意图才允许进入 Save Manager。
+28. canonical Git state 的历史压缩、派生缓存清理与无消费者兼容字段去冗余必须在 canonical 候选提交/外部导入物化时完成，不能依赖“以后某次 SAVE_EXPORT”。
+29. 兼容 runtime 包必须在导出 manifest 中记录生成它的精确 Git commit SHA；MAJOR.MINOR 只做兼容标签，不能替代源码身份。
 
 ## Global QA
 
@@ -45,7 +48,7 @@
 
 1. `governance/project.md` 明确 Git `main` HEAD 为源码持久化权威。
 2. `runtime/registry.json` 是唯一机器运行主源；不得携带 ZIP 成员 bytes/SHA 注册表。
-3. Git source tree 不得持久化包级 `魂师修炼RPG_manifest.json`；兼容包内同名 manifest 必须由当前 registry + 当前 runtime member bytes 在导出时生成，并标记为派生视图。
+3. Git source tree 不得持久化包级 `魂师修炼RPG_manifest.json`；兼容包内同名 manifest 必须由当前 registry + 当前 runtime member bytes 在导出时生成、标记为派生视图，并携带生成它的精确 `source_git_commit_sha`。
 4. `.github/workflows/qa.yml` 和 `qa/` 回归脚本存在且可运行。
 5. `main` source tree 不保存临时 build、backup、patch、测试输出、导出 ZIP 或其它可确定性再生的包级生成物。
 
@@ -69,24 +72,28 @@
 18. 常见用户意图必须有明确 dispatcher；route 必须有 owner、最小 source、access policy 与 state access。
 19. 大型 DM ONLY 文件只按对象/章节/节点选择性读取。
 20. BOOT 只读取启动切片，不无条件注入完整 registry。
+21. `SAVE_CURRENT` 必须是只读 route 事务，`SAVE_EXPORT` 必须继续由 Save Manager Skill 独占；显式导出 recognition 优先于普通保存确认，二者不得共享模糊的裸“存档”语义。
 
 ### D. 状态
 
-21. `12_状态存档.md` 只拥有 schema、恢复/迁移、原子提交与持久化协议，不保存某次冒险当前值。
-22. registry 必须登记唯一 `current_state_owner`，且该文件真实存在于 source tree、没有被 `.gitignore` 排除；Git `main` HEAD 是当前状态权威。
-23. 普通游戏 route 不得原地改写已有 checkpoint，也不得绕过 `STATE_COMMIT` 建立第二个 current state。
-24. 外部 checkpoint 只能是 `checkpoint_import` / `SAVE_EXPORT` 的兼容输入输出，不能作为普通启动优先源。
-25. `STATE_REV` 只表示兼容 checkpoint lineage；普通 Git state commit 不自动递增。
-26. 旧兼容字段只有仍有合法恢复/迁移消费者时才保留；序列化去冗余不得删除防重复或连续性职责数据。
-27. 未明确执行 `STATE_MIGRATION` / `LOAD_SAVE` 时，不得用外部 checkpoint 覆盖 current Git state。
+22. `12_状态存档.md` 只拥有 schema、恢复/迁移、原子提交与持久化协议，不保存某次冒险当前值。
+23. registry 必须登记唯一 `current_state_owner`，且该文件真实存在于 source tree、没有被 `.gitignore` 排除；Git `main` HEAD 是当前状态权威。
+24. 普通游戏 route 不得原地改写已有 checkpoint，也不得绕过 `STATE_COMMIT` 建立第二个 current state。
+25. 外部 checkpoint 只能是 `checkpoint_import` / `SAVE_EXPORT` 的兼容输入输出，不能作为普通启动优先源。
+26. `STATE_REV` 只表示兼容 checkpoint lineage；普通 Git state commit 与 `SAVE_CURRENT` 不自动递增。
+27. 旧兼容字段只有仍有合法恢复/迁移消费者时才保留；序列化去冗余不得删除防重复或连续性职责数据。
+28. 未明确执行 `STATE_MIGRATION` / `LOAD_SAVE` 时，不得用外部 checkpoint 覆盖 current Git state。
+29. canonical state 的近期日志压缩、重复派生缓存与可安全删除旧容器清理不得依赖兼容导出；最终 canonical 候选在 `STATE_COMMIT` 前就应符合当前序列化规范。
+30. `RUNTIME_PACKAGE / RUNTIME_PACKAGE_SHA256 / RUNTIME_RELEASE` 等旧包绑定只能作为兼容 checkpoint 元数据存在，不能决定 Git current state 的规则权威；canonical 后续写入可无 gameplay migration 地自然去除惰性残留。
 
 ### E. 兼容运行包导出
 
-28. 兼容 package release 只用于派生运行包；项目正式 release 身份仍是 Git commit SHA。
-29. 导出物成员只能来自 `compatibility/runtime-members.json`，并且包根 `魂师修炼RPG_manifest.json` 必须由导出器从当前 `runtime/registry.json` 与当前成员 bytes 现场生成，不能读取 source tree 中的旧副本。
-30. 最终 ZIP 从磁盘重开后成员、JSON、bytes/SHA、route 与 registry 镜像一致。
-31. 导出包不得包含 `.github/`、仓库 QA 脚本、导出脚本、`dist/`、canonical `state/current/` 或其它 source-only 配置。
-32. 兼容 manifest 必须显式声明 canonical Git state 被排除、fallback 需要外部 checkpoint；package release 与 `STATE_REV` 保持独立。
+31. 兼容 package release 只用于派生运行包；项目正式 release 身份仍是 Git commit SHA。
+32. 导出物成员只能来自 `compatibility/runtime-members.json`，并且包根 `魂师修炼RPG_manifest.json` 必须由导出器从当前 `runtime/registry.json` 与当前成员 bytes 现场生成，不能读取 source tree 中的旧副本。
+33. 生成 manifest 的 `source_git_commit_sha` 必须等于导出 checkout 的精确 Git `HEAD`，并通过包审计；相同 `MAJOR.MINOR` 标签的不同源码内容仍必须能由该 SHA 唯一分辨。
+34. 最终 ZIP 从磁盘重开后成员、JSON、bytes/SHA、route 与 registry 镜像一致。
+35. 导出包不得包含 `.github/`、仓库 QA 脚本、导出脚本、`dist/`、canonical `state/current/` 或其它 source-only 配置。
+36. 兼容 manifest 必须显式声明 canonical Git state 被排除、fallback 需要外部 checkpoint；package release 与 `STATE_REV` 保持独立。
 
 ## 存档 / Git state 迁移 QA
 
