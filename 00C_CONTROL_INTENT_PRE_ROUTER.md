@@ -17,7 +17,7 @@
 
 ## 2. 边界
 
-- 本文件不保存“哪些话算存档/继续/帮助/状态/现实活动/项目维护”的第二套语义；分别由 manifest 指向的 recognition owner 负责。
+- 本文件不保存“哪些话算存档确认/兼容导出/继续/帮助/状态/现实活动/项目维护”的第二套语义；分别由 manifest 指向的 recognition owner 负责。尤其不得因为两者都含“存档”二字，就在 pre-router 内把 `SAVE_CURRENT` 与 `SAVE_EXPORT` 合并成一个事务。
 - recognition 只回答“是不是这个事务”，不能代替事务执行。
 - pre-router 不修改 `runtime_working_state`，不推进世界时间，也不写 checkpoint。
-- 项目维护、状态迁移、恢复、新游戏、存档、帮助、查看、现实活动等控制事务的存在、优先级与 dispatcher 都只认当前 manifest；新增/删除 intent 或把事务在 route/Skill 间迁移时，不需要同步维护第二张表。
+- 项目维护、状态迁移、外部恢复、新游戏、Git存档确认、兼容存档导出、帮助、查看、现实活动等控制事务的存在、优先级与 dispatcher 都只认当前 manifest；新增/删除 intent 或把事务在 route/Skill 间迁移时，不需要同步维护第二张表。
