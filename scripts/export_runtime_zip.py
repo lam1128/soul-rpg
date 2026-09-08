@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import argparse, copy, hashlib, json, zipfile
+import argparse, copy, hashlib, json, subprocess, zipfile
 from pathlib import Path
 
 MANIFEST = '魂师修炼RPG_manifest.json'
@@ -12,6 +12,19 @@ def sha256(b: bytes) -> str:
 def load_json(path: Path):
     return json.loads(path.read_text(encoding='utf-8'))
 
+def git_head_sha(project: Path) -> str:
+    try:
+        value = subprocess.check_output(
+            ['git', '-C', str(project), 'rev-parse', 'HEAD'],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip().lower()
+    except Exception as exc:
+        raise SystemExit(f'cannot resolve source Git HEAD: {exc}')
+    if len(value) != 40 or any(c not in '0123456789abcdef' for c in value):
+        raise SystemExit('invalid source Git HEAD sha')
+    return value
+
 def build_manifest(project: Path):
     registry = load_json(project / REGISTRY)
     cfg = load_json(project / MEMBERS_CFG)
@@ -23,12 +36,14 @@ def build_manifest(project: Path):
     if len(members) != len(set(members)):
         raise SystemExit('duplicate runtime member path')
 
+    source_sha = git_head_sha(project)
     derived = copy.deepcopy(registry)
     derived['generated_view'] = {
         'derived': True,
         'source': REGISTRY,
         'purpose': 'compatibility_runtime_export',
         'source_authority': 'git main HEAD',
+        'source_git_commit_sha': source_sha,
         'state_projection': 'canonical_git_state_excluded_use_external_checkpoint_import'
     }
     derived['hash_policy'] = {
@@ -62,6 +77,9 @@ def verify_zip(path: Path):
         if MANIFEST not in names:
             raise SystemExit('manifest missing')
         data = json.loads(z.read(MANIFEST))
+        source_sha = data.get('generated_view', {}).get('source_git_commit_sha')
+        if not isinstance(source_sha, str) or len(source_sha) != 40 or any(c not in '0123456789abcdef' for c in source_sha.lower()):
+            raise SystemExit('source Git commit identity missing')
         registered = set(data.get('files', {}))
         if registered != set(names):
             raise SystemExit('zip membership mismatch')
@@ -87,7 +105,7 @@ def main():
         if not out.is_absolute():
             out = project / out
         out.parent.mkdir(parents=True, exist_ok=True)
-        # Deterministic compatibility export: source bytes define the artifact, not wall-clock ZIP metadata.
+        # Deterministic compatibility export: source bytes and exact Git HEAD define the artifact, not wall-clock ZIP metadata.
         with zipfile.ZipFile(out, 'w', compression=zipfile.ZIP_STORED) as z:
             for name in members:
                 raw = raw_manifest if name == MANIFEST else (project / name).read_bytes()
@@ -97,7 +115,8 @@ def main():
                 zi.external_attr = (0o100644 & 0xFFFF) << 16
                 z.writestr(zi, raw)
         verify_zip(out)
-        print(json.dumps({'status':'PASS','out':str(out),'members':len(members)}, ensure_ascii=False))
+        manifest = json.loads(raw_manifest)
+        print(json.dumps({'status':'PASS','out':str(out),'members':len(members),'source_git_commit_sha':manifest['generated_view']['source_git_commit_sha']}, ensure_ascii=False))
     else:
         print(raw_manifest.decode('utf-8'))
 
