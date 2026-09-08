@@ -9,8 +9,9 @@
     "compatibility_package_scheme": "MAJOR.MINOR",
     "compatibility_release_owner": "runtime/registry.json#release",
     "package_filename_must_match_release": true,
+    "package_manifest_must_embed_source_commit": true,
     "member_release_stamps": "forbidden_redundant_metadata",
-    "member_identity": "compatibility manifest member registry + sha256; source identity remains Git commit SHA"
+    "member_identity": "compatibility manifest member registry + sha256 + generated source Git commit SHA; source identity remains Git commit SHA"
   },
   "current": {
     "governance_index": "魂师修炼RPG_文档索引与版本状态.md",
@@ -91,10 +92,19 @@
       "skill": "soul-rpg-save-manager",
       "operation": "SAVE_EXPORT"
     },
-    "HELP_READONLY": {
+    "SAVE_CURRENT": {
       "recognition_owner": "13_交互协议.md",
       "route": "readonly_query",
       "priority": 6,
+      "recognition_sections": [
+        "§2C SAVE_CURRENT"
+      ],
+      "dispatch_type": "route"
+    },
+    "HELP_READONLY": {
+      "recognition_owner": "13_交互协议.md",
+      "route": "readonly_query",
+      "priority": 7,
       "recognition_sections": [
         "§2A PLAYER_GUIDE"
       ],
@@ -103,7 +113,7 @@
     "STATUS_READONLY": {
       "recognition_owner": "13_交互协议.md",
       "route": "readonly_query",
-      "priority": 7,
+      "priority": 8,
       "recognition_sections": [
         "§2B STATUS_READONLY recognition"
       ],
@@ -112,7 +122,7 @@
     "REAL_ACTIVITY_CONTROL": {
       "recognition_owner": "13_交互协议.md",
       "route": "real_activity",
-      "priority": 8,
+      "priority": 9,
       "recognition_sections": [
         "§4 REAL_ACTIVITY"
       ],
@@ -756,7 +766,8 @@
           "file": "13_交互协议.md",
           "sections": [
             "§2A PLAYER_GUIDE",
-            "§2B STATUS_READONLY recognition"
+            "§2B STATUS_READONLY recognition",
+            "§2C SAVE_CURRENT"
           ]
         },
         {
@@ -764,7 +775,7 @@
           "sections": [
             "请求对应的玩家可见动态字段"
           ],
-          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY",
+          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY_or_SAVE_CURRENT",
           "fallback_state_owner": "state_model.current_state_owner"
         },
         {
@@ -772,7 +783,7 @@
           "sections": [
             "请求字段对应schema/玩家安全边界"
           ],
-          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY"
+          "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY_or_SAVE_CURRENT"
         },
         {
           "file": "UI_统一规范_日常恢复与菜单.md",
@@ -782,9 +793,10 @@
             "§8 玩家状态 / 人物卡",
             "§9 伙伴列表",
             "§10 伙伴详情",
-            "§11 伙伴篇章导航"
+            "§11 伙伴篇章导航",
+            "§16 存档确认｜Git current state"
           ],
-          "condition": "readonly_game_ui_request"
+          "condition": "readonly_game_ui_request_or_SAVE_CURRENT"
         },
         {
           "file": "11_世界与NPC.md",
@@ -975,6 +987,7 @@
     "runtime_registry": "runtime/registry.json",
     "compatibility_manifest": "魂师修炼RPG_manifest.json",
     "compatibility_manifest_role": "derived_export_view",
+    "compatibility_export_identity": "generated_view.source_git_commit_sha",
     "state_authority": "state/current/SOUL_STATE_V1.yaml"
   },
   "internal_services": {
