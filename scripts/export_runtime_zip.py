@@ -50,8 +50,8 @@ def build_manifest(project: Path):
     return derived, members
 
 def manifest_bytes(project: Path):
-    m, members = build_manifest(project)
-    raw = (json.dumps(m, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
+    manifest, members = build_manifest(project)
+    raw = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
     return raw, members
 
 def verify_zip(path: Path):
@@ -79,12 +79,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--project', default='.')
     ap.add_argument('--out')
-    ap.add_argument('--sync-manifest', action='store_true')
     args = ap.parse_args()
     project = Path(args.project).resolve()
     raw_manifest, members = manifest_bytes(project)
-    if args.sync_manifest:
-        (project / MANIFEST).write_bytes(raw_manifest)
     if args.out:
         out = Path(args.out)
         if not out.is_absolute():
@@ -101,7 +98,7 @@ def main():
                 z.writestr(zi, raw)
         verify_zip(out)
         print(json.dumps({'status':'PASS','out':str(out),'members':len(members)}, ensure_ascii=False))
-    elif not args.sync_manifest:
+    else:
         print(raw_manifest.decode('utf-8'))
 
 if __name__ == '__main__':
