@@ -19,10 +19,17 @@ def git_head_sha(project: Path) -> str:
             text=True,
             stderr=subprocess.DEVNULL,
         ).strip().lower()
+        dirty = subprocess.check_output(
+            ['git', '-C', str(project), 'status', '--porcelain', '--untracked-files=no'],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
     except Exception as exc:
         raise SystemExit(f'cannot resolve source Git HEAD: {exc}')
     if len(value) != 40 or any(c not in '0123456789abcdef' for c in value):
         raise SystemExit('invalid source Git HEAD sha')
+    if dirty:
+        raise SystemExit('source checkout has tracked changes; commit them before compatibility runtime export')
     return value
 
 def build_manifest(project: Path):
@@ -105,7 +112,7 @@ def main():
         if not out.is_absolute():
             out = project / out
         out.parent.mkdir(parents=True, exist_ok=True)
-        # Deterministic compatibility export: source bytes and exact Git HEAD define the artifact, not wall-clock ZIP metadata.
+        # Deterministic compatibility export: committed source bytes and exact Git HEAD define the artifact, not wall-clock ZIP metadata.
         with zipfile.ZipFile(out, 'w', compression=zipfile.ZIP_STORED) as z:
             for name in members:
                 raw = raw_manifest if name == MANIFEST else (project / name).read_bytes()
