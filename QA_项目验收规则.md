@@ -39,6 +39,7 @@
 27. 普通“存档 / 保存进度”必须是 Git current state 的只读确认，不得触发 `SAVE_EXPORT`、生成 ZIP 或增加 `STATE_REV`；只有明确外部导出/备份/checkpoint/ZIP 意图才允许进入 Save Manager。
 28. canonical Git state 的历史压缩、派生缓存清理与无消费者兼容字段去冗余必须在 canonical 候选提交/外部导入物化时完成，不能依赖“以后某次 SAVE_EXPORT”。
 29. 兼容 runtime 包必须在导出 manifest 中记录生成它的精确 Git commit SHA；MAJOR.MINOR 只做兼容标签，不能替代源码身份。
+30. 仓库结构或文档排版修改后必须通过 `qa/check_repository_hygiene.py`：不得把 ZIP、backup、patch、build/dist、缓存、持久化兼容 manifest 或写死具体 MAJOR.MINOR 的兼容包文件名重新提交进 source tree；受管文本保持 UTF-8、LF 与完整文件结尾。
 
 ## Global QA
 
@@ -50,7 +51,7 @@
 2. `runtime/registry.json` 是唯一机器运行主源；不得携带 ZIP 成员 bytes/SHA 注册表。
 3. Git source tree 不得持久化包级 `魂师修炼RPG_manifest.json`；兼容包内同名 manifest 必须由当前 registry + 当前 runtime member bytes 在导出时生成、标记为派生视图，并携带生成它的精确 `source_git_commit_sha`。
 4. `.github/workflows/qa.yml` 和 `qa/` 回归脚本存在且可运行。
-5. `main` source tree 不保存临时 build、backup、patch、测试输出、导出 ZIP 或其它可确定性再生的包级生成物。
+5. `main` source tree 不保存临时 build、backup、patch、测试输出、导出 ZIP 或其它可确定性再生的包级生成物；`qa/check_repository_hygiene.py` 必须同时检查跟踪文件命名、文本编码/换行、唯一 current state 与兼容包文件名不写死具体 release。
 
 ### B. 单一职责
 
@@ -84,14 +85,14 @@
 27. 旧兼容字段只有仍有合法恢复/迁移消费者时才保留；序列化去冗余不得删除防重复或连续性职责数据。
 28. 未明确执行 `STATE_MIGRATION` / `LOAD_SAVE` 时，不得用外部 checkpoint 覆盖 current Git state。
 29. canonical state 的近期日志压缩、重复派生缓存与可安全删除旧容器清理不得依赖兼容导出；最终 canonical 候选在 `STATE_COMMIT` 前就应符合当前序列化规范。
-30. `RUNTIME_PACKAGE / RUNTIME_PACKAGE_SHA256 / RUNTIME_RELEASE` 等旧包绑定只能作为兼容 checkpoint 元数据存在，不能决定 Git current state 的规则权威；canonical 后续写入可无 gameplay migration 地自然去除惰性残留。
+30. `RUNTIME_PACKAGE / RUNTIME_PACKAGE_SHA256 / RUNTIME_RELEASE` 只允许作为外部兼容 checkpoint 元数据存在；规范化后的 canonical `state/current/SOUL_STATE_V1.yaml` 不得继续携带这些旧包绑定字段，也不得由普通运行重新写回。
 
 ### E. 兼容运行包导出
 
 31. 兼容 package release 只用于派生运行包；项目正式 release 身份仍是 Git commit SHA。
 32. 导出物成员只能来自 `compatibility/runtime-members.json`，并且包根 `魂师修炼RPG_manifest.json` 必须由导出器从当前 `runtime/registry.json` 与当前成员 bytes 现场生成，不能读取 source tree 中的旧副本。
 33. 生成 manifest 的 `source_git_commit_sha` 必须等于导出 checkout 的精确 Git `HEAD`，并通过包审计；相同 `MAJOR.MINOR` 标签的不同源码内容仍必须能由该 SHA 唯一分辨。
-34. 最终 ZIP 从磁盘重开后成员、JSON、bytes/SHA、route 与 registry 镜像一致。
+34. 最终 ZIP 从磁盘重开后成员、JSON、bytes/SHA、route 与 registry 镜像一致，且 ZIP 文件名必须由 registry 当前 `release` 派生并与包内 release 一致。
 35. 导出包不得包含 `.github/`、仓库 QA 脚本、导出脚本、`dist/`、canonical `state/current/` 或其它 source-only 配置。
 36. 兼容 manifest 必须显式声明 canonical Git state 被排除、fallback 需要外部 checkpoint；package release 与 `STATE_REV` 保持独立。
 
