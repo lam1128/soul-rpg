@@ -25,6 +25,7 @@ jobs:
           set -euo pipefail
           python qa/validate_registry.py --project .
           python qa/check_route_conflicts.py --project .
+          python qa/check_content_contracts.py
           python qa/check_state_invariants.py --project .
           python qa/check_git_first_architecture.py --project .
           python qa/check_derived_export.py --project .
