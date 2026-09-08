@@ -10,7 +10,7 @@ Git-first source for the dedicated 魂师修炼RPG project.
 - Stable domain owner files own gameplay/business truth.
 - `12_状态存档.md` owns the state schema and lifecycle protocol; `state/current/SOUL_STATE_V1.yaml` is the canonical persisted adventure state in Git.
 - `qa/` is the repository-owned regression suite.
-- `魂师修炼RPG_manifest.json` and the compatibility runtime ZIP are generated/derived compatibility views, not source authority.
+- The compatibility runtime ZIP is a generated view, not source authority. Its root `魂师修炼RPG_manifest.json` is generated from `runtime/registry.json` + current runtime member bytes during export and is not persisted as a source-tree file.
 
 ## Runtime entry
 
@@ -20,9 +20,9 @@ Source checkout:
 
 Compatibility runtime export:
 
-`魂师修炼RPG_文档索引与版本状态.md → 魂师修炼RPG_manifest.json`
+`魂师修炼RPG_文档索引与版本状态.md → package-root 魂师修炼RPG_manifest.json`
 
-The compatibility manifest mirrors the source registry and additionally carries export membership, bytes and SHA-256 data.
+The package manifest mirrors the source registry and additionally carries export membership, bytes and SHA-256 data. It exists inside the generated compatibility package, not as a second tracked source registry.
 
 ## State and checkpoint compatibility
 
@@ -35,6 +35,7 @@ Run:
 ```bash
 python3 qa/validate_registry.py --project .
 python3 qa/check_route_conflicts.py --project .
+python3 qa/check_content_contracts.py
 python3 qa/check_state_invariants.py --project .
 python3 qa/check_git_first_architecture.py --project .
 python3 qa/check_derived_export.py --project .
