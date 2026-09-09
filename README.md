@@ -8,13 +8,29 @@ Git-only 的《魂师修炼RPG》项目源码仓库。当前规则、路由、�
 |---|---|
 | 项目治理 | `governance/project.md` |
 | 机器运行注册表 | `runtime/registry.json` |
-| 项目索引 | `魂师修炼RPG_项目索引.md` |
+| 项目索引 | `governance/魂师修炼RPG_项目索引.md` |
 | 当前正式游戏状态 | `state/current/SOUL_STATE_V1.yaml` |
-| 状态 schema / 生命周期 | `12_状态存档.md` |
-| 项目验收规则 | `QA_项目验收规则.md` |
+| 状态 schema / 生命周期 | `rules/12_状态存档.md` |
+| 项目验收规则 | `qa/QA_项目验收规则.md` |
 | 自动回归 | `qa/` + `.github/workflows/qa.yml` |
 
 业务规则继续由各稳定 owner 文件独占。registry 只负责发现 owner、route、control intent、访问策略、Skill 接口与状态生命周期，不复制战斗、经济、人物、篇章或 UI 的业务常量。
+
+## 仓库目录
+
+```text
+.
+├── governance/      # 项目治理、项目索引、专用项目入口协议
+├── runtime/         # registry、runtime kernel、startup/control router
+├── rules/           # 人物、叙事、战斗、世界、状态、交互规则 owner
+├── data/            # 魂兽、猎魂、经济、伙伴与 45 个伙伴篇章
+├── ui/              # 重复游戏界面的正式 UI owner
+├── state/current/   # canonical Git current state
+├── qa/              # 验收规则与自动回归
+└── .github/         # GitHub Actions
+```
+
+根目录只保留 `README.md` 与 `.gitignore`；其余正式内容按职责进入对应目录。目录层级不改变 runtime 的按需读取策略，实际读取仍只认 `runtime/registry.json` 当前登记的 owner / sources。
 
 ## 运行顺序
 

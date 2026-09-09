@@ -71,6 +71,11 @@ def main() -> None:
     if not files:
         fail('repository has no tracked files')
 
+    root_files = sorted(rel for rel in files if '/' not in rel)
+    allowed_root_files = ['.gitignore', 'README.md']
+    if root_files != allowed_root_files:
+        fail('root must contain only README.md and .gitignore; found: ' + ', '.join(root_files))
+
     artifact_violations: list[str] = []
     format_violations: list[str] = []
     legacy_package_refs: list[str] = []

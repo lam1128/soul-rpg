@@ -19,7 +19,7 @@ def main() -> None:
     registry = json.loads((project / 'runtime/registry.json').read_text(encoding='utf-8'))
     state_model = registry.get('state_model', {})
 
-    if state_model.get('schema_owner') != '12_状态存档.md':
+    if state_model.get('schema_owner') != 'rules/12_状态存档.md':
         fail('state schema owner changed')
     owner = state_model.get('current_state_owner')
     if owner != 'state/current/SOUL_STATE_V1.yaml':
@@ -77,7 +77,7 @@ def main() -> None:
     current = controls.get('SAVE_CURRENT', {})
     if current.get('dispatch_type') != 'route' or current.get('route') != 'readonly_query':
         fail('SAVE_CURRENT must be readonly_query route')
-    if current.get('recognition_owner') != '13_交互协议.md':
+    if current.get('recognition_owner') != 'rules/13_交互协议.md':
         fail('SAVE_CURRENT recognition owner mismatch')
     if '§2C SAVE_CURRENT' not in current.get('recognition_sections', []):
         fail('SAVE_CURRENT recognition section missing')
@@ -88,9 +88,9 @@ def main() -> None:
     if readonly.get('state_access') != 'READ_CONSUMER':
         fail('readonly_query state access changed')
 
-    interaction = (project / '13_交互协议.md').read_text(encoding='utf-8')
-    ui = (project / 'UI_统一规范_日常恢复与菜单.md').read_text(encoding='utf-8')
-    schema = (project / '12_状态存档.md').read_text(encoding='utf-8')
+    interaction = (project / 'rules/13_交互协议.md').read_text(encoding='utf-8')
+    ui = (project / 'ui/UI_统一规范_日常恢复与菜单.md').read_text(encoding='utf-8')
+    schema = (project / 'rules/12_状态存档.md').read_text(encoding='utf-8')
     if '## 2C. SAVE_CURRENT｜Git 当前进度确认' not in interaction:
         fail('SAVE_CURRENT interaction contract missing')
     if '只有用户明确说“导出存档' not in interaction:
