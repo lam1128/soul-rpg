@@ -3,16 +3,16 @@
   "governance_schema": "GOV_GIT_ROUTE_SKILL_V1",
   "status": "active",
   "current": {
-    "governance_index": "魂师修炼RPG_项目索引.md",
+    "governance_index": "governance/魂师修炼RPG_项目索引.md",
     "manifest": "runtime/registry.json",
-    "startup_router_fast_entry": "00B_STARTUP_ROUTER_FAST_ENTRY.md",
-    "control_intent_pre_router": "00C_CONTROL_INTENT_PRE_ROUTER.md",
-    "runtime_kernel": "00A_RUNTIME_KERNEL.md",
-    "state_schema": "12_状态存档.md",
-    "interaction_protocol": "13_交互协议.md",
-    "qa_rules": "QA_项目验收规则.md",
-    "project_entry_protocol": "00P_专用项目入口协议.md",
-    "companion_episode_index": "DM_ONLY_C00_伙伴篇章库.md",
+    "startup_router_fast_entry": "runtime/00B_STARTUP_ROUTER_FAST_ENTRY.md",
+    "control_intent_pre_router": "runtime/00C_CONTROL_INTENT_PRE_ROUTER.md",
+    "runtime_kernel": "runtime/00A_RUNTIME_KERNEL.md",
+    "state_schema": "rules/12_状态存档.md",
+    "interaction_protocol": "rules/13_交互协议.md",
+    "qa_rules": "qa/QA_项目验收规则.md",
+    "project_entry_protocol": "governance/00P_专用项目入口协议.md",
+    "companion_episode_index": "data/companions/DM_ONLY_C00_伙伴篇章库.md",
     "project_governance": "governance/project.md",
     "current_state_owner": "state/current/SOUL_STATE_V1.yaml"
   },
@@ -31,7 +31,7 @@
   },
   "control_intents": {
     "PROJECT_CONFIG_CONTROL": {
-      "recognition_owner": "魂师修炼RPG_项目索引.md",
+      "recognition_owner": "governance/魂师修炼RPG_项目索引.md",
       "priority": 1,
       "recognition_sections": [
         "§7 文件维护与QA"
@@ -41,7 +41,7 @@
       "operation": "PROJECT_CONFIG_CONTROL"
     },
     "STATE_MIGRATION": {
-      "recognition_owner": "12_状态存档.md",
+      "recognition_owner": "rules/12_状态存档.md",
       "priority": 2,
       "recognition_sections": [
         "§1A Git current state 与 checkpoint import",
@@ -52,7 +52,7 @@
       "operation": "STATE_MIGRATION"
     },
     "LOAD_SAVE": {
-      "recognition_owner": "12_状态存档.md",
+      "recognition_owner": "rules/12_状态存档.md",
       "priority": 3,
       "recognition_sections": [
         "§1A Git current state 与 checkpoint import",
@@ -63,7 +63,7 @@
       "operation": "LOAD_SAVE"
     },
     "NEW_GAME": {
-      "recognition_owner": "13_交互协议.md",
+      "recognition_owner": "rules/13_交互协议.md",
       "route": "new_game",
       "priority": 4,
       "recognition_sections": [
@@ -72,7 +72,7 @@
       "dispatch_type": "route"
     },
     "SAVE_EXPORT": {
-      "recognition_owner": "12_状态存档.md",
+      "recognition_owner": "rules/12_状态存档.md",
       "priority": 5,
       "recognition_sections": [
         "§10 SAVE_EXPORT"
@@ -82,7 +82,7 @@
       "operation": "SAVE_EXPORT"
     },
     "SAVE_CURRENT": {
-      "recognition_owner": "13_交互协议.md",
+      "recognition_owner": "rules/13_交互协议.md",
       "route": "readonly_query",
       "priority": 6,
       "recognition_sections": [
@@ -91,7 +91,7 @@
       "dispatch_type": "route"
     },
     "HELP_READONLY": {
-      "recognition_owner": "13_交互协议.md",
+      "recognition_owner": "rules/13_交互协议.md",
       "route": "readonly_query",
       "priority": 7,
       "recognition_sections": [
@@ -100,7 +100,7 @@
       "dispatch_type": "route"
     },
     "STATUS_READONLY": {
-      "recognition_owner": "13_交互协议.md",
+      "recognition_owner": "rules/13_交互协议.md",
       "route": "readonly_query",
       "priority": 8,
       "recognition_sections": [
@@ -109,7 +109,7 @@
       "dispatch_type": "route"
     },
     "REAL_ACTIVITY_CONTROL": {
-      "recognition_owner": "13_交互协议.md",
+      "recognition_owner": "rules/13_交互协议.md",
       "route": "real_activity",
       "priority": 9,
       "recognition_sections": [
@@ -121,10 +121,10 @@
   "topic_routes": {
     "governance_boot": {
       "access_policy": "BOOT",
-      "owner": "魂师修炼RPG_项目索引.md",
+      "owner": "governance/魂师修炼RPG_项目索引.md",
       "sources": [
         {
-          "file": "魂师修炼RPG_项目索引.md",
+          "file": "governance/魂师修炼RPG_项目索引.md",
           "sections": [
             "治理顺序与读取边界"
           ]
@@ -144,13 +144,13 @@
           ]
         },
         {
-          "file": "00B_STARTUP_ROUTER_FAST_ENTRY.md",
+          "file": "runtime/00B_STARTUP_ROUTER_FAST_ENTRY.md",
           "sections": [
             "全文，小文件"
           ]
         },
         {
-          "file": "00C_CONTROL_INTENT_PRE_ROUTER.md",
+          "file": "runtime/00C_CONTROL_INTENT_PRE_ROUTER.md",
           "sections": [
             "全文，小文件"
           ]
@@ -161,10 +161,10 @@
     },
     "ordinary_gameplay_startup": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "00A_RUNTIME_KERNEL.md",
+      "owner": "runtime/00A_RUNTIME_KERNEL.md",
       "sources": [
         {
-          "file": "00A_RUNTIME_KERNEL.md",
+          "file": "runtime/00A_RUNTIME_KERNEL.md",
           "sections": [
             "K0",
             "K1",
@@ -180,20 +180,20 @@
           "fallback_state_owner": "state_model.current_state_owner"
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "§1A",
             "当前阶段涉及的schema/提交规则"
           ]
         },
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "当前PHASE对应章节"
           ]
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§7 读档 / 继续游戏恢复卡"
           ],
@@ -206,23 +206,23 @@
     },
     "new_game": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "13_交互协议.md",
+      "owner": "rules/13_交互协议.md",
       "sources": [
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§2 CHAR_CREATE",
             "§2A PLAYER_GUIDE"
           ]
         },
         {
-          "file": "10A_主角武魂模板.md",
+          "file": "rules/10A_主角武魂模板.md",
           "sections": [
             "全文，小文件"
           ]
         },
         {
-          "file": "11_世界与NPC.md",
+          "file": "rules/11_世界与NPC.md",
           "sections": [
             "§2",
             "§3",
@@ -231,14 +231,14 @@
           ]
         },
         {
-          "file": "10_战斗与成长系统.md",
+          "file": "rules/10_战斗与成长系统.md",
           "sections": [
             "§5等级/初始经验需求计算",
             "§8伙伴同步初始化规则"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "§1存档头",
             "§2玩家初始化字段",
@@ -248,20 +248,20 @@
           ]
         },
         {
-          "file": "DM_ONLY_S00_九名核心伙伴.md",
+          "file": "data/companions/DM_ONLY_S00_九名核心伙伴.md",
           "sections": [
             "§0",
             "CORE_OU开局必要字段"
           ]
         },
         {
-          "file": "DM_ONLY_E00_经济与药品.md",
+          "file": "data/economy/DM_ONLY_E00_经济与药品.md",
           "sections": [
             "§1新游戏初始资产"
           ]
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§15 角色创建 UI"
           ]
@@ -272,28 +272,28 @@
     },
     "real_activity": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "00A_RUNTIME_KERNEL.md",
+      "owner": "runtime/00A_RUNTIME_KERNEL.md",
       "sources": [
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§4"
           ]
         },
         {
-          "file": "00A_RUNTIME_KERNEL.md",
+          "file": "runtime/00A_RUNTIME_KERNEL.md",
           "sections": [
             "K3"
           ]
         },
         {
-          "file": "10_战斗与成长系统.md",
+          "file": "rules/10_战斗与成长系统.md",
           "sections": [
             "现实活动经验相关章节"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "§3现实活动schema",
             "§9会话工作态提交"
@@ -306,7 +306,7 @@
           ]
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§13 现实活动 UI"
           ]
@@ -317,10 +317,10 @@
     },
     "combat": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "10_战斗与成长系统.md",
+      "owner": "rules/10_战斗与成长系统.md",
       "sources": [
         {
-          "file": "00A_RUNTIME_KERNEL.md",
+          "file": "runtime/00A_RUNTIME_KERNEL.md",
           "sections": [
             "K4",
             "K5",
@@ -328,13 +328,13 @@
           ]
         },
         {
-          "file": "10_战斗与成长系统.md",
+          "file": "rules/10_战斗与成长系统.md",
           "sections": [
             "当前行动/伤害/技能/战败/经验所需章节"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "§7战斗schema",
             "§9会话工作态提交"
@@ -347,41 +347,41 @@
           ]
         },
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§5 COMBAT"
           ]
         },
         {
-          "file": "DM_ONLY_E00_经济与药品.md",
+          "file": "data/economy/DM_ONLY_E00_经济与药品.md",
           "sections": [
             "§4治疗药品，仅当前战斗行动为使用药品时"
           ],
           "condition": "combat_action_uses_medicine"
         },
         {
-          "file": "01_人物性格.md",
+          "file": "rules/01_人物性格.md",
           "sections": [
             "仅当前参战核心伙伴"
           ],
           "condition": "core_companion_present"
         },
         {
-          "file": "DM_ONLY_S00_九名核心伙伴.md",
+          "file": "data/companions/DM_ONLY_S00_九名核心伙伴.md",
           "sections": [
             "仅当前参战伙伴机械静态卡；优先使用工作态已冻结技能"
           ],
           "condition": "runtime_state_lacks_needed_static_companion_detail"
         },
         {
-          "file": "UI_统一规范_魂兽遭遇.md",
+          "file": "ui/UI_统一规范_魂兽遭遇.md",
           "sections": [
             "当前遭遇输出模板"
           ],
           "condition": "soul_beast_encounter"
         },
         {
-          "file": "02_叙事规则.md",
+          "file": "rules/02_叙事规则.md",
           "sections": [
             "战斗输出必要叙事规则"
           ]
@@ -392,24 +392,24 @@
     },
     "hunting": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "DM_ONLY_R00_猎魂区域与遭遇表.md",
+      "owner": "data/hunting/DM_ONLY_R00_猎魂区域与遭遇表.md",
       "sources": [
         {
-          "file": "DM_ONLY_R00_猎魂区域与遭遇表.md",
+          "file": "data/hunting/DM_ONLY_R00_猎魂区域与遭遇表.md",
           "sections": [
             "当前区域",
             "§5 寻怪流程"
           ]
         },
         {
-          "file": "DM_ONLY_B00_魂兽数据库.md",
+          "file": "data/soul-beasts/DM_ONLY_B00_魂兽数据库.md",
           "sections": [
             "当前候选魂兽",
             "§3生成接口"
           ]
         },
         {
-          "file": "10_战斗与成长系统.md",
+          "file": "rules/10_战斗与成长系统.md",
           "sections": [
             "§6",
             "§7",
@@ -417,21 +417,21 @@
           ]
         },
         {
-          "file": "DM_ONLY_S00_九名核心伙伴.md",
+          "file": "data/companions/DM_ONLY_S00_九名核心伙伴.md",
           "sections": [
             "仅拟吸收伙伴当前条目、已拥有魂环与武魂路线参考"
           ],
           "condition": "SOUL_RING_TARGET_IF_ANY_is_core_companion"
         },
         {
-          "file": "11_世界与NPC.md",
+          "file": "rules/11_世界与NPC.md",
           "sections": [
             "当前区域",
             "§8A"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "§8世界/猎魂/遭遇schema",
             "§9会话工作态提交"
@@ -444,34 +444,34 @@
           ]
         },
         {
-          "file": "DM_ONLY_E00_经济与药品.md",
+          "file": "data/economy/DM_ONLY_E00_经济与药品.md",
           "sections": [
             "§2猎获收益，仅击杀结算时"
           ]
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§14 猎魂导航 UI"
           ],
           "condition": "before_active_soul_beast_encounter"
         },
         {
-          "file": "UI_统一规范_魂兽遭遇.md",
+          "file": "ui/UI_统一规范_魂兽遭遇.md",
           "sections": [
             "遭遇输出"
           ],
           "condition": "active_soul_beast_encounter"
         },
         {
-          "file": "01_人物性格.md",
+          "file": "rules/01_人物性格.md",
           "sections": [
             "仅当前同行且实际参与本轮互动的核心伙伴"
           ],
           "condition": "core_companion_present_and_interacts"
         },
         {
-          "file": "02_叙事规则.md",
+          "file": "rules/02_叙事规则.md",
           "sections": [
             "当前猎魂输出必要叙事规范"
           ]
@@ -485,10 +485,10 @@
     },
     "companion_episode": {
       "access_policy": "INDEX_THEN_ONE_CHAPTER",
-      "owner": "DM_ONLY_C00_伙伴篇章库.md",
+      "owner": "data/companions/DM_ONLY_C00_伙伴篇章库.md",
       "sources": [
         {
-          "file": "DM_ONLY_C00_伙伴篇章库.md",
+          "file": "data/companions/DM_ONLY_C00_伙伴篇章库.md",
           "sections": [
             "§0 当前需要的通用篇章规则/题材profile",
             "§1A 当前CHAPTER_ID一行",
@@ -504,19 +504,19 @@
           "hard_limit": "exactly_one_chapter_file"
         },
         {
-          "file": "DM_ONLY_S00_九名核心伙伴.md",
+          "file": "data/companions/DM_ONLY_S00_九名核心伙伴.md",
           "sections": [
             "当前伙伴"
           ]
         },
         {
-          "file": "01_人物性格.md",
+          "file": "rules/01_人物性格.md",
           "sections": [
             "当前伙伴"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "§5关系schema",
             "§6伙伴篇章schema",
@@ -530,20 +530,20 @@
           ]
         },
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§6",
             "§7"
           ]
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§12 伙伴篇章运行 UI"
           ]
         },
         {
-          "file": "02_叙事规则.md",
+          "file": "rules/02_叙事规则.md",
           "sections": [
             "当前场景必要规范"
           ]
@@ -557,16 +557,16 @@
     },
     "ordinary_world_action": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "11_世界与NPC.md",
+      "owner": "rules/11_世界与NPC.md",
       "sources": [
         {
-          "file": "11_世界与NPC.md",
+          "file": "rules/11_世界与NPC.md",
           "sections": [
             "当前地点/人物/时间所需章节"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "§8世界字段schema",
             "§9会话工作态提交"
@@ -579,37 +579,37 @@
           ]
         },
         {
-          "file": "10_战斗与成长系统.md",
+          "file": "rules/10_战斗与成长系统.md",
           "sections": [
             "§5经验来源，仅当当前行动属于游戏内普通修炼或其他成长判定时"
           ]
         },
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§3 ADVENTURE"
           ]
         },
         {
-          "file": "01_人物性格.md",
+          "file": "rules/01_人物性格.md",
           "sections": [
             "仅当前实际出现人物"
           ]
         },
         {
-          "file": "02_叙事规则.md",
+          "file": "rules/02_叙事规则.md",
           "sections": [
             "当前输出必要规范"
           ]
         },
         {
-          "file": "03_外形参考.md",
+          "file": "rules/03_外形参考.md",
           "sections": [
             "仅确需外形描写的人物"
           ]
         },
         {
-          "file": "DM_ONLY_C00_伙伴篇章库.md",
+          "file": "data/companions/DM_ONLY_C00_伙伴篇章库.md",
           "sections": [
             "§0关系/恋爱通用规则",
             "§1B当前伙伴恋爱基础门槛；禁止读取任何单章正文"
@@ -622,30 +622,30 @@
     },
     "recovery": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "10_战斗与成长系统.md",
+      "owner": "rules/10_战斗与成长系统.md",
       "sources": [
         {
-          "file": "10_战斗与成长系统.md",
+          "file": "rules/10_战斗与成长系统.md",
           "sections": [
             "§9 战败与恢复",
             "当前恢复方式涉及的机械"
           ]
         },
         {
-          "file": "DM_ONLY_E00_经济与药品.md",
+          "file": "data/economy/DM_ONLY_E00_经济与药品.md",
           "sections": [
             "§4治疗药品，仅使用现有药品时"
           ],
           "condition": "medicine_recovery"
         },
         {
-          "file": "11_世界与NPC.md",
+          "file": "rules/11_世界与NPC.md",
           "sections": [
             "当前地点/世界时间/安全条件"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "相关动态字段schema",
             "§9原子提交"
@@ -658,27 +658,27 @@
           ]
         },
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§3B 恢复交互"
           ]
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§2恢复方式",
             "§4恢复结算卡"
           ]
         },
         {
-          "file": "01_人物性格.md",
+          "file": "rules/01_人物性格.md",
           "sections": [
             "仅当前直接参与恢复场景互动的核心伙伴"
           ],
           "condition": "core_companion_present_and_interacts"
         },
         {
-          "file": "02_叙事规则.md",
+          "file": "rules/02_叙事规则.md",
           "sections": [
             "当前恢复输出必要叙事规范"
           ]
@@ -689,22 +689,22 @@
     },
     "economy_transaction": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "DM_ONLY_E00_经济与药品.md",
+      "owner": "data/economy/DM_ONLY_E00_经济与药品.md",
       "sources": [
         {
-          "file": "DM_ONLY_E00_经济与药品.md",
+          "file": "data/economy/DM_ONLY_E00_经济与药品.md",
           "sections": [
             "当前药品/餐饮/交易章节"
           ]
         },
         {
-          "file": "11_世界与NPC.md",
+          "file": "rules/11_世界与NPC.md",
           "sections": [
             "当前地点与世界时钟应用"
           ]
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "金钱/库存/世界字段schema",
             "§9原子提交"
@@ -717,13 +717,13 @@
           ]
         },
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§3A 经济交易交互"
           ]
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§1交易菜单",
             "§3交易结果卡",
@@ -731,14 +731,14 @@
           ]
         },
         {
-          "file": "01_人物性格.md",
+          "file": "rules/01_人物性格.md",
           "sections": [
             "仅当前与交易/用餐场景实际互动的核心伙伴"
           ],
           "condition": "core_companion_present_and_interacts"
         },
         {
-          "file": "02_叙事规则.md",
+          "file": "rules/02_叙事规则.md",
           "sections": [
             "当前交易/用餐输出必要叙事规范"
           ]
@@ -749,10 +749,10 @@
     },
     "readonly_query": {
       "access_policy": "SELECTIVE_ON_MATCH",
-      "owner": "13_交互协议.md",
+      "owner": "rules/13_交互协议.md",
       "sources": [
         {
-          "file": "13_交互协议.md",
+          "file": "rules/13_交互协议.md",
           "sections": [
             "§2A PLAYER_GUIDE",
             "§2B STATUS_READONLY recognition",
@@ -768,14 +768,14 @@
           "fallback_state_owner": "state_model.current_state_owner"
         },
         {
-          "file": "12_状态存档.md",
+          "file": "rules/12_状态存档.md",
           "sections": [
             "请求字段对应schema/玩家安全边界"
           ],
           "condition": "intent_is_STATUS_READONLY_or_HELP_READONLY_or_SAVE_CURRENT"
         },
         {
-          "file": "UI_统一规范_日常恢复与菜单.md",
+          "file": "ui/UI_统一规范_日常恢复与菜单.md",
           "sections": [
             "§5 游戏主页面｜只读导航",
             "§6 CG大厅｜只读收藏",
@@ -788,7 +788,7 @@
           "condition": "readonly_game_ui_request_or_SAVE_CURRENT"
         },
         {
-          "file": "11_世界与NPC.md",
+          "file": "rules/11_世界与NPC.md",
           "sections": [
             "§1 当前地点所需地点信息",
             "§6 恋爱与普通生活",
@@ -798,14 +798,14 @@
           "condition": "intent_is_HELP_READONLY_and_request_is_main_page_or_social_discovery_help"
         },
         {
-          "file": "DM_ONLY_S00_九名核心伙伴.md",
+          "file": "data/companions/DM_ONLY_S00_九名核心伙伴.md",
           "sections": [
             "仅当前请求涉及的伙伴公开身份、已拥有魂环/技能与机械卡；禁止读取未来候选路线"
           ],
           "condition": "readonly_request_requires_companion_public_card_or_list_or_detail"
         },
         {
-          "file": "DM_ONLY_C00_伙伴篇章库.md",
+          "file": "data/companions/DM_ONLY_C00_伙伴篇章库.md",
           "sections": [
             "当前请求涉及的§0公开CG/篇章规则与§1A公开标题、前置、解锁信息；禁止读取隐藏选择答案、固定真相与未来节点"
           ],
@@ -858,8 +858,8 @@
     }
   ],
   "qa": {
-    "incremental_owner": "QA_项目验收规则.md",
-    "global_owner": "QA_项目验收规则.md",
+    "incremental_owner": "qa/QA_项目验收规则.md",
+    "global_owner": "qa/QA_项目验收规则.md",
     "global_required_on_conditions": [
       "governance_index_or_manifest_structure_change",
       "current_route_access_policy_change",
@@ -869,13 +869,13 @@
       "multi_core_owner_change",
       "formal_release"
     ],
-    "global": "QA_项目验收规则.md#Global QA",
+    "global": "qa/QA_项目验收规则.md#Global QA",
     "source_regression_suite": "qa/",
     "git_workflow": ".github/workflows/qa.yml"
   },
   "tombstone_policy": {
-    "owner": "governance/project.md + 魂师修炼RPG_项目索引.md#§6 仓库卫生",
-    "enforced_by": "QA_项目验收规则.md + qa/"
+    "owner": "governance/project.md + governance/魂师修炼RPG_项目索引.md#§6 仓库卫生",
+    "enforced_by": "qa/QA_项目验收规则.md + qa/"
   },
   "freeze": {
     "policy": "冻结成员必须显式登记；读取冻结文件不授予修改权限。变更冻结成员需先进入UNFREEZE/CORE_CHANGE维护流程。",
@@ -905,7 +905,7 @@
     }
   },
   "state_model": {
-    "schema_owner": "12_状态存档.md",
+    "schema_owner": "rules/12_状态存档.md",
     "current_state_owner": "state/current/SOUL_STATE_V1.yaml",
     "runtime_working_state": "transaction_candidate_initialized_from_current_git_state",
     "persisted_current_source": "state_model.current_state_owner",
@@ -919,51 +919,51 @@
     "startup_behavior": "read current_state_owner directly from current Git main HEAD; do not require checkpoint upload"
   },
   "companion_episode_files": {
-    "CORE_OU_C01": "DM_ONLY_C10_伙伴篇章/CORE_OU_C01.md",
-    "CORE_OU_C02": "DM_ONLY_C10_伙伴篇章/CORE_OU_C02.md",
-    "CORE_OU_C03": "DM_ONLY_C10_伙伴篇章/CORE_OU_C03.md",
-    "CORE_OU_C04": "DM_ONLY_C10_伙伴篇章/CORE_OU_C04.md",
-    "CORE_OU_C05": "DM_ONLY_C10_伙伴篇章/CORE_OU_C05.md",
-    "CORE_HE_C01": "DM_ONLY_C10_伙伴篇章/CORE_HE_C01.md",
-    "CORE_HE_C02": "DM_ONLY_C10_伙伴篇章/CORE_HE_C02.md",
-    "CORE_HE_C03": "DM_ONLY_C10_伙伴篇章/CORE_HE_C03.md",
-    "CORE_HE_C04": "DM_ONLY_C10_伙伴篇章/CORE_HE_C04.md",
-    "CORE_HE_C05": "DM_ONLY_C10_伙伴篇章/CORE_HE_C05.md",
-    "CORE_WU_C01": "DM_ONLY_C10_伙伴篇章/CORE_WU_C01.md",
-    "CORE_WU_C02": "DM_ONLY_C10_伙伴篇章/CORE_WU_C02.md",
-    "CORE_WU_C03": "DM_ONLY_C10_伙伴篇章/CORE_WU_C03.md",
-    "CORE_WU_C04": "DM_ONLY_C10_伙伴篇章/CORE_WU_C04.md",
-    "CORE_WU_C05": "DM_ONLY_C10_伙伴篇章/CORE_WU_C05.md",
-    "CORE_WEI_C01": "DM_ONLY_C10_伙伴篇章/CORE_WEI_C01.md",
-    "CORE_WEI_C02": "DM_ONLY_C10_伙伴篇章/CORE_WEI_C02.md",
-    "CORE_WEI_C03": "DM_ONLY_C10_伙伴篇章/CORE_WEI_C03.md",
-    "CORE_WEI_C04": "DM_ONLY_C10_伙伴篇章/CORE_WEI_C04.md",
-    "CORE_WEI_C05": "DM_ONLY_C10_伙伴篇章/CORE_WEI_C05.md",
-    "CORE_SA_C01": "DM_ONLY_C10_伙伴篇章/CORE_SA_C01.md",
-    "CORE_SA_C02": "DM_ONLY_C10_伙伴篇章/CORE_SA_C02.md",
-    "CORE_SA_C03": "DM_ONLY_C10_伙伴篇章/CORE_SA_C03.md",
-    "CORE_SA_C04": "DM_ONLY_C10_伙伴篇章/CORE_SA_C04.md",
-    "CORE_SA_C05": "DM_ONLY_C10_伙伴篇章/CORE_SA_C05.md",
-    "CORE_GUI_C01": "DM_ONLY_C10_伙伴篇章/CORE_GUI_C01.md",
-    "CORE_GUI_C02": "DM_ONLY_C10_伙伴篇章/CORE_GUI_C02.md",
-    "CORE_GUI_C03": "DM_ONLY_C10_伙伴篇章/CORE_GUI_C03.md",
-    "CORE_GUI_C04": "DM_ONLY_C10_伙伴篇章/CORE_GUI_C04.md",
-    "CORE_GUI_C05": "DM_ONLY_C10_伙伴篇章/CORE_GUI_C05.md",
-    "CORE_YANG_C01": "DM_ONLY_C10_伙伴篇章/CORE_YANG_C01.md",
-    "CORE_YANG_C02": "DM_ONLY_C10_伙伴篇章/CORE_YANG_C02.md",
-    "CORE_YANG_C03": "DM_ONLY_C10_伙伴篇章/CORE_YANG_C03.md",
-    "CORE_YANG_C04": "DM_ONLY_C10_伙伴篇章/CORE_YANG_C04.md",
-    "CORE_YANG_C05": "DM_ONLY_C10_伙伴篇章/CORE_YANG_C05.md",
-    "CORE_DA_C01": "DM_ONLY_C10_伙伴篇章/CORE_DA_C01.md",
-    "CORE_DA_C02": "DM_ONLY_C10_伙伴篇章/CORE_DA_C02.md",
-    "CORE_DA_C03": "DM_ONLY_C10_伙伴篇章/CORE_DA_C03.md",
-    "CORE_DA_C04": "DM_ONLY_C10_伙伴篇章/CORE_DA_C04.md",
-    "CORE_DA_C05": "DM_ONLY_C10_伙伴篇章/CORE_DA_C05.md",
-    "CORE_ZHANG_C01": "DM_ONLY_C10_伙伴篇章/CORE_ZHANG_C01.md",
-    "CORE_ZHANG_C02": "DM_ONLY_C10_伙伴篇章/CORE_ZHANG_C02.md",
-    "CORE_ZHANG_C03": "DM_ONLY_C10_伙伴篇章/CORE_ZHANG_C03.md",
-    "CORE_ZHANG_C04": "DM_ONLY_C10_伙伴篇章/CORE_ZHANG_C04.md",
-    "CORE_ZHANG_C05": "DM_ONLY_C10_伙伴篇章/CORE_ZHANG_C05.md"
+    "CORE_OU_C01": "data/companions/episodes/CORE_OU_C01.md",
+    "CORE_OU_C02": "data/companions/episodes/CORE_OU_C02.md",
+    "CORE_OU_C03": "data/companions/episodes/CORE_OU_C03.md",
+    "CORE_OU_C04": "data/companions/episodes/CORE_OU_C04.md",
+    "CORE_OU_C05": "data/companions/episodes/CORE_OU_C05.md",
+    "CORE_HE_C01": "data/companions/episodes/CORE_HE_C01.md",
+    "CORE_HE_C02": "data/companions/episodes/CORE_HE_C02.md",
+    "CORE_HE_C03": "data/companions/episodes/CORE_HE_C03.md",
+    "CORE_HE_C04": "data/companions/episodes/CORE_HE_C04.md",
+    "CORE_HE_C05": "data/companions/episodes/CORE_HE_C05.md",
+    "CORE_WU_C01": "data/companions/episodes/CORE_WU_C01.md",
+    "CORE_WU_C02": "data/companions/episodes/CORE_WU_C02.md",
+    "CORE_WU_C03": "data/companions/episodes/CORE_WU_C03.md",
+    "CORE_WU_C04": "data/companions/episodes/CORE_WU_C04.md",
+    "CORE_WU_C05": "data/companions/episodes/CORE_WU_C05.md",
+    "CORE_WEI_C01": "data/companions/episodes/CORE_WEI_C01.md",
+    "CORE_WEI_C02": "data/companions/episodes/CORE_WEI_C02.md",
+    "CORE_WEI_C03": "data/companions/episodes/CORE_WEI_C03.md",
+    "CORE_WEI_C04": "data/companions/episodes/CORE_WEI_C04.md",
+    "CORE_WEI_C05": "data/companions/episodes/CORE_WEI_C05.md",
+    "CORE_SA_C01": "data/companions/episodes/CORE_SA_C01.md",
+    "CORE_SA_C02": "data/companions/episodes/CORE_SA_C02.md",
+    "CORE_SA_C03": "data/companions/episodes/CORE_SA_C03.md",
+    "CORE_SA_C04": "data/companions/episodes/CORE_SA_C04.md",
+    "CORE_SA_C05": "data/companions/episodes/CORE_SA_C05.md",
+    "CORE_GUI_C01": "data/companions/episodes/CORE_GUI_C01.md",
+    "CORE_GUI_C02": "data/companions/episodes/CORE_GUI_C02.md",
+    "CORE_GUI_C03": "data/companions/episodes/CORE_GUI_C03.md",
+    "CORE_GUI_C04": "data/companions/episodes/CORE_GUI_C04.md",
+    "CORE_GUI_C05": "data/companions/episodes/CORE_GUI_C05.md",
+    "CORE_YANG_C01": "data/companions/episodes/CORE_YANG_C01.md",
+    "CORE_YANG_C02": "data/companions/episodes/CORE_YANG_C02.md",
+    "CORE_YANG_C03": "data/companions/episodes/CORE_YANG_C03.md",
+    "CORE_YANG_C04": "data/companions/episodes/CORE_YANG_C04.md",
+    "CORE_YANG_C05": "data/companions/episodes/CORE_YANG_C05.md",
+    "CORE_DA_C01": "data/companions/episodes/CORE_DA_C01.md",
+    "CORE_DA_C02": "data/companions/episodes/CORE_DA_C02.md",
+    "CORE_DA_C03": "data/companions/episodes/CORE_DA_C03.md",
+    "CORE_DA_C04": "data/companions/episodes/CORE_DA_C04.md",
+    "CORE_DA_C05": "data/companions/episodes/CORE_DA_C05.md",
+    "CORE_ZHANG_C01": "data/companions/episodes/CORE_ZHANG_C01.md",
+    "CORE_ZHANG_C02": "data/companions/episodes/CORE_ZHANG_C02.md",
+    "CORE_ZHANG_C03": "data/companions/episodes/CORE_ZHANG_C03.md",
+    "CORE_ZHANG_C04": "data/companions/episodes/CORE_ZHANG_C04.md",
+    "CORE_ZHANG_C05": "data/companions/episodes/CORE_ZHANG_C05.md"
   },
   "source_authority": {
     "mode": "git_first",

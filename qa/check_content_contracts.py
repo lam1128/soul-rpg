@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "runtime" / "registry.json"
-COMMON_UI = "UI_统一规范_日常恢复与菜单.md"
+COMMON_UI = "ui/UI_统一规范_日常恢复与菜单.md"
 
 
 def fail(message: str) -> None:
@@ -100,14 +100,14 @@ def main() -> None:
                 if marker not in text:
                     fail(f"{chapter_id} missing relationship follow-up contract: {marker}")
 
-    c00 = (ROOT / "DM_ONLY_C00_伙伴篇章库.md").read_text(encoding="utf-8")
+    c00 = (ROOT / "data/companions/DM_ONLY_C00_伙伴篇章库.md").read_text(encoding="utf-8")
     if "既有单章若仍使用单字段" in c00:
         fail("C00 still contains legacy single-CG compatibility fallback")
     for marker in ("基础CG画面", "高好感CG画面", "第5章一律是**关系后续章**"):
         if marker not in c00:
             fail(f"C00 missing global contract marker: {marker}")
 
-    interaction = (ROOT / "13_交互协议.md").read_text(encoding="utf-8")
+    interaction = (ROOT / "rules/13_交互协议.md").read_text(encoding="utf-8")
     if "未收录条目只显示“未解锁”" in interaction:
         fail("interaction protocol still contains stale single-slot CG lock wording")
 

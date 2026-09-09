@@ -20,7 +20,7 @@ def main():
         '.github/workflows/qa.yml',
         '.gitignore',
         'state/current/SOUL_STATE_V1.yaml',
-        '魂师修炼RPG_项目索引.md',
+        'governance/魂师修炼RPG_项目索引.md',
     ]
     for rel in required:
         if not (project / rel).is_file():
