@@ -1,0 +1,32 @@
+name: Soul RPG temporary layout migration
+
+on:
+  push:
+    branches: [maintenance/reorganize-layout-20260909]
+
+permissions:
+  contents: write
+
+jobs:
+  reorganize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install QA dependency
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: Reorganize from current branch and run Global QA
+        run: python tools/reorganize_layout_temp.py
+      - name: Commit clean organized tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "soul-rpg-maintenance"
+          git config user.email "119428694+lam1128@users.noreply.github.com"
+          git status --short
+          git commit -m "maintenance: organize repository by responsibility"
+          git push origin HEAD:maintenance/reorganize-layout-20260909
